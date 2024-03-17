@@ -1,4 +1,4 @@
-# VUE_W7
+# Happiness-Breakfast-Day
 
 This template should help get you started developing with Vue 3 in Vite.
 
