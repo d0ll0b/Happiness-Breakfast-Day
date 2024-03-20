@@ -6,6 +6,7 @@ import { Form, Field, ErrorMessage, defineRule, configure } from 'vee-validate'
 import * as AllRules from '@vee-validate/rules'
 import { localize, setLocale } from '@vee-validate/i18n'
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
+import { Swiper, SwiperSlide } from 'swiper/vue'
 
 import './assets/all.scss'
 
@@ -55,4 +56,6 @@ app.component('VueLoading', Loading)
 app.component('VForm', Form)
 app.component('VField', Field)
 app.component('ErrorMessage', ErrorMessage)
+app.component(Swiper)
+app.component(SwiperSlide)
 app.mount('#app')

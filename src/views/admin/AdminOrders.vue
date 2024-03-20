@@ -1,6 +1,8 @@
 <template>
   <h1 class="mt-3">訂單頁面</h1>
-  <VueLoading :active="isLoading" />
+  <VueLoading :active="isLoading">
+    <fairy-loading></fairy-loading>
+  </VueLoading>
   <div class="container">
       <div class="mt-4">
           <!-- 產品Modal -->
@@ -79,6 +81,7 @@ import OrdersModal from '@/components/OrdersModal.vue'
 import DelModal from '@/components/DelModal.vue'
 import AlertMessages from '@/components/AlertMessages.vue'
 import PaginationBtn from '@/components/PaginationBtn.vue'
+import FairyLoading from '@/components/FairyLoading.vue'
 const { VITE_APP_API_URL: apiUrl, VITE_APP_API_NAME: apiPath } = import.meta.env
 
 export default {
@@ -93,7 +96,8 @@ export default {
     OrdersModal,
     DelModal,
     AlertMessages,
-    PaginationBtn
+    PaginationBtn,
+    FairyLoading
   },
   methods: {
     getOrders (page = 1) {

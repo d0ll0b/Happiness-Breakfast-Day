@@ -1,6 +1,8 @@
 <template>
     <h1 class="mt-3">優惠卷頁面</h1>
-    <VueLoading :active="isLoading" />
+    <VueLoading :active="isLoading">
+      <fairy-loading></fairy-loading>
+    </VueLoading>
     <div class="container">
         <div class="mt-4">
             <!-- 新增優惠卷Modal -->
@@ -73,6 +75,7 @@ import CouponsModal from '@/components/CouponsModal.vue'
 import DelModal from '@/components/DelModal.vue'
 import AlertMessages from '@/components/AlertMessages.vue'
 import PaginationBtn from '@/components/PaginationBtn.vue'
+import FairyLoading from '@/components/FairyLoading.vue'
 const { VITE_APP_API_URL: apiUrl, VITE_APP_API_NAME: apiPath } = import.meta.env
 
 export default {
@@ -88,7 +91,8 @@ export default {
     CouponsModal,
     DelModal,
     AlertMessages,
-    PaginationBtn
+    PaginationBtn,
+    FairyLoading
   },
   methods: {
     getCoupons (page = 1) {
