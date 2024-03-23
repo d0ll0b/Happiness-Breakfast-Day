@@ -1,5 +1,5 @@
 <template>
-    <header>
+    <header class="d-none">
         <user-header></user-header>
     </header>
     <RouterView />
