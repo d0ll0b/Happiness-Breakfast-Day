@@ -16,11 +16,22 @@
     a{
         color: #495057;
         &.router-link-exact-active{
-            color: $teal-600;
+            color: $primary;
             background: white;
             border-radius: 30px;
         }
     }
+}
+
+.Logo{
+    object-fit: cover;
+    width: 300px;
+    height: 100px;
+    background: $primary;
+}
+
+.main-pt{
+    padding-top: 150px;
 }
 
 

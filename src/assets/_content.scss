@@ -1,0 +1,21 @@
+.description {
+    background:url('https://storage.googleapis.com/vue-course-api.appspot.com/dollob_api/1711275564013.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=Z%2B7vNKiJeh6wf3DvunpT0BJgkt09Y18X2ZRRzpw4UgQZd4%2FeCUkIPPJ0S9Z%2BPHFQd4oc6T0e%2FUGtBORjHREU8C8CefsARU%2FccWj7MAzYOQ158egUq2o5ne23XcOjNeQPgv7oGY4awZSGKoiaJ1lP%2BA4PDhyeVZQSBE2EIzn15rCbgLluR4FnDlUy77v26bSvLdJJRIfXSQMNTjSZeWlkW7V3KSheO3rAgX28rrv5uHieivxz9l73d%2FadWuU4b5Zbh%2FDNmIXLLllEKDB7lhCkjruqK8kspqAmzwn1tHgq2tcZmIlY1kHpoRntoMzICdEAcDx390CMiiWuWCnvkSAxfQ%3D%3D');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    z-index: -2; /* 确保在文本下面 */
+}
+
+.description-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://storage.googleapis.com/vue-course-api.appspot.com/dollob_api/1711275564013.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=Z%2B7vNKiJeh6wf3DvunpT0BJgkt09Y18X2ZRRzpw4UgQZd4%2FeCUkIPPJ0S9Z%2BPHFQd4oc6T0e%2FUGtBORjHREU8C8CefsARU%2FccWj7MAzYOQ158egUq2o5ne23XcOjNeQPgv7oGY4awZSGKoiaJ1lP%2BA4PDhyeVZQSBE2EIzn15rCbgLluR4FnDlUy77v26bSvLdJJRIfXSQMNTjSZeWlkW7V3KSheO3rAgX28rrv5uHieivxz9l73d%2FadWuU4b5Zbh%2FDNmIXLLllEKDB7lhCkjruqK8kspqAmzwn1tHgq2tcZmIlY1kHpoRntoMzICdEAcDx390CMiiWuWCnvkSAxfQ%3D%3D');
+    background-size: cover;
+    background-position: center;
+    filter: blur(3px); /* 模糊效果，值越大越模糊 */
+    z-index: -1; /* 确保在文本下面 */
+}

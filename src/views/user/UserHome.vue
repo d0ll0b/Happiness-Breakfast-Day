@@ -1,8 +1,11 @@
 <template>
-    <header class="d-none">
+   <!-- class="d-none" -->
+    <header>
         <user-header></user-header>
     </header>
-    <RouterView />
+    <main class="main-pt">
+      <RouterView />
+    </main>
     <footer>
         <user-footer></user-footer>
     </footer>

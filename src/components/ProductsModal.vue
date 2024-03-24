@@ -57,7 +57,7 @@
                            placeholder="請輸入分類" v-model="tempProduct.category">
                   </div>
                   <div class="mb-3 col-md-6">
-                    <label for="price" class="form-label">單位</label>
+                    <label for="unit" class="form-label">單位</label>
                     <input id="unit" type="text" class="form-control" placeholder="請輸入單位" v-model="tempProduct.unit">
                   </div>
                 </div>
@@ -98,7 +98,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
               取消
             </button>
             <button type="button" class="btn btn-primary" @click="Update_product(tempProduct.id)">

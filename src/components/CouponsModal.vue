@@ -9,7 +9,7 @@
 
             <div class="modal-header bg-dark text-white">
               <h5 id="CouponsModalLabel" class="modal-title">
-                <span>新增優惠卷</span>
+                <span>{{ title }}優惠卷</span>
               </h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -43,7 +43,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                 關閉
               </button>
               <button type="button" class="btn btn-primary" @click="Update_Coupons(tempCoupons.id)">
@@ -65,7 +65,8 @@ export default {
   data () {
     return {
       tempCoupons: {},
-      CouponsModal: ''
+      CouponsModal: '',
+      title: ''
     }
   },
   components: {
@@ -83,6 +84,7 @@ export default {
           this.isNew = true
           DateTime = new Date().toISOString().split('T')
           this.tempCoupons.due_date = DateTime[0]
+          this.title = '新增'
           this.CouponsModal.show()
           break
         case 'edit':
@@ -90,6 +92,7 @@ export default {
           this.tempCoupons = { ...item }
           DateTime = new Date(this.tempCoupons.due_date * 1000).toISOString().split('T')
           this.tempCoupons.due_date = DateTime[0]
+          this.title = '編輯'
           this.CouponsModal.show()
           break
       }

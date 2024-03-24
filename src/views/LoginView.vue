@@ -53,6 +53,7 @@ export default {
         this.$refs.AlertMessages.show_toast('登入成功~~')
         this.$router.push('/admin/products')
       }).catch((err) => {
+        // this.$refs.AlertMessages.show_alert('尚未登入，請先進行登入~~', 1300, 'error')
         this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
       })
     },
@@ -61,7 +62,7 @@ export default {
     }
   },
   mounted () {
-    this.$refs.AlertMessages.show_alert('尚未登入，請先進行登入~~', 1300, 'error')
+    // this.login()
   }
 }
 </script>
