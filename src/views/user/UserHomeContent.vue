@@ -25,15 +25,10 @@
           </v-swiper-slide>
       </v-swiper>
       <!-- 公告 swiper -->
-  </div>
-  <div class="container">
-      <!-- 每日特餐 -->
-      <!-- swiper card -->
-      <!-- 每日特餐 -->
 
       <!-- location -->
       <div class="d-flex bg-light">
-          <div class="col-4 flex-column text-start justify-content-around">
+          <div class="col-4 flex-column text-start justify-content-around" data-aos="fade-left">
               <ul>
                   <h3 class="text-primary mt-3">店鋪資訊</h3><br>
                   <h4>太平洋店</h4><br>
@@ -51,11 +46,54 @@
       </div>
       <!-- location -->
   </div>
+  <div class="container">
+        <!-- 每日特餐 -->
+        <!-- swiper card -->
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a short card.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 每日特餐 -->
+  </div>
 </template>
 
 <script>
 import FairyLoading from '@/components/FairyLoading.vue'
-
+import AOS from 'aos'
 import { Pagination } from 'swiper/modules'
 const { VITE_APP_API_URL: apiUrl, VITE_APP_API_NAME: apiPath } = import.meta.env
 
@@ -91,6 +129,9 @@ export default {
   },
   mounted () {
     this.get_product()
+  },
+  created () {
+    AOS.init()
   }
 }
 </script>

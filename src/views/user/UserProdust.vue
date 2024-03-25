@@ -6,7 +6,8 @@
     <!-- 訊息 -->
     <alert-messages ref="AlertMessages"></alert-messages>
     <!-- 訊息 -->
-    <div class="bg-primary text-white rounded-pill py-1 mb-1">
+    <div class="container">
+      <div class="bg-primary text-white rounded-pill py-1 mb-1">
           <div class="h5 mb-0">
               <span>{{ product.title }}</span>
           </div>
@@ -16,26 +17,24 @@
               <div class="col-sm-6">
               <img class="img-fluid" :src="product.imageUrl" alt="">
           </div>
-          <div class="col-sm-6 text-start d-flex flex-column justify-content-between">
-              <div>
-                <span class="badge bg-primary rounded-pill">{{ product.category }}</span>
-                <p>商品描述：<br>{{ product.description }}</p><br>
-                <p>商品內容：<br>{{ product.content }}</p>
-              </div>
-              <div>
-                <del class="h6">原價 {{ product.origin_price }} 元</del>
-                <div class="h5">現在只要 {{ product.price }} 元</div>
-                    <div>
-                        <div class="input-group mt-3">
-                        <input type="number" class="form-control"
-                                min="1" v-model.number="qty">
-                        <button type="button" class="btn btn-primary" @click="add_cart(product.id, qty, 'new')">加入購物車</button>
-                        </div>
-                    </div>
-                </div>
+          <!-- d-flex flex-column justify-content-between -->
+          <div class="col-sm-6 text-start">
+              <span class="badge bg-primary rounded-pill">{{ product.category }}</span>
+              <p>商品描述：<br>{{ product.description }}</p><br>
+              <p>商品內容：<br>{{ product.content }}</p>
+              <del class="h6">原價 {{ product.origin_price }} 元</del>
+              <div class="h5">現在只要 {{ product.price }} 元</div>
+                  <div>
+                      <div class="input-group mt-3">
+                      <input type="number" class="form-control"
+                              min="1" v-model.number="qty">
+                      <button type="button" class="btn btn-primary" @click="add_cart(product.id, qty, 'new')">加入購物車</button>
+                      </div>
+                  </div>
               </div>
           </div>
       </div>
+    </div>
 </template>
 
 <script>
