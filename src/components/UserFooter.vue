@@ -24,8 +24,9 @@
                     </li>
                 </ul>
                 <ul class="text-start d-flex flex-column justify-content-between">
+                    <div></div>
                     <div class="d-flex">
-                        <li class="nav-item mt-2">
+                        <li class="nav-item">
                             <!-- FB -->
                             <a href="https://www.facebook.com/?locale=zh_TW">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
@@ -33,7 +34,7 @@
                                 </svg>
                             </a>
                         </li>
-                        <li class="nav-item mt-2 ms-2">
+                        <li class="nav-item ms-2">
                             <!-- twitter -->
                             <a href="https://twitter.com/?lang=zh-Hant">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
@@ -41,7 +42,7 @@
                                 </svg>
                             </a>
                         </li>
-                        <li class="nav-item mt-2 ms-2">
+                        <li class="nav-item ms-2">
                             <!-- Instagram -->
                             <a href="https://www.instagram.com/">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">

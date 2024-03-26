@@ -1,10 +1,4 @@
 <template>
-    <!-- <h1>首頁導覽列</h1>
-    <RouterLink to="/">首頁</RouterLink> |
-    <RouterLink to="/products">產品列表</RouterLink> |
-    <RouterLink to="/cart">購物車列表</RouterLink> |
-    <RouterLink to="/admin">管理者登入</RouterLink> -->
-
     <ul class="nav narbar position-fixed w-100 bg-primary text-white fw-bold px-2 justify-content-between z-3 top-0">
         <div>
             <li class="nav-item ms-4">
