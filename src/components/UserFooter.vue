@@ -53,7 +53,7 @@
                     </div>
                     <div>
                         <li class="nav-item">
-                            <p>Copyright © 2024 dollob.All rights reserved.</p>
+                            <p>Copyright © 2024 dollob.<br class="d-flex d-sm-none">All rights reserved.</p>
                         </li>
                         <li class="nav-item">隱私權政策</li>
                         <li class="nav-item">服務條款</li>
