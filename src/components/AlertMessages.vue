@@ -17,6 +17,7 @@ export default {
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
+        timerProgressBar: true,
         timer
       })
     },

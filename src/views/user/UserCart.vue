@@ -69,7 +69,7 @@
                 </tfoot>
             </table>
             <div class="text-end mb-4">
-                <button class="btn btn-primary" type="button" :class="{ 'disabled': !carts.length }" @click="this.$router.push('/checkout')">結帳</button>
+                <button class="btn btn-primary" type="button" :class="{ 'disabled': !carts.length }" @click="this.$router.push('/checkout')">前往結帳</button>
             </div>
         </div>
     </div>

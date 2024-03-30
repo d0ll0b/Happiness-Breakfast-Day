@@ -74,12 +74,12 @@
                     <td>
                         <div class="btn-group btn-group-sm">
                         <!-- <button type="button" class="btn btn-outline-secondary"> -->
-                            <RouterLink  class="btn btn-outline-secondary" :to="`/product/${item.id}`">
+                            <RouterLink  class="btn btn-outline-primary" :to="`/product/${item.id}`">
                                 <i class="fas fa-spinner fa-pulse" v-if="isLoading"></i>
                                 查看更多
                             </RouterLink>
                         <!-- </button> -->
-                        <button type="button" class="btn btn-outline-danger" @click="add_cart(item.id,1,'new')">
+                        <button type="button" class="btn btn-secondary text-white" @click="add_cart(item.id,1,'new')">
                             <i class="fas fa-spinner fa-pulse" v-if="isLoading"></i>
                             加到購物車
                         </button>
@@ -165,7 +165,6 @@ export default {
         this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
       }).finally(() => {
         this.isLoading = false
-        this.$refs.userProductModal.hide_Model()
       })
     }
   },

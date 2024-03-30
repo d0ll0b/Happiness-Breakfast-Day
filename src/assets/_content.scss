@@ -19,3 +19,8 @@
     filter: blur(3px); /* 模糊效果，值越大越模糊 */
     z-index: -1; /* 确保在文本下面 */
 }
+
+.card-img-top {
+    height: 20rem;
+    object-fit: cover;
+}

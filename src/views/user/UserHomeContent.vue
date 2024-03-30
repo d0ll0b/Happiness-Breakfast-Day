@@ -2,9 +2,11 @@
   <VueLoading :active="isLoading">
     <fairy-loading></fairy-loading>
   </VueLoading>
+  <!-- 訊息 -->
+  <alert-messages ref="AlertMessages"></alert-messages>
+  <!-- 訊息 -->
   <div class="container-fuild">
       <!-- description -->
-      <!-- py-7 -->
       <div class="w-100 description text-white d-flex flex-column justify-content-between py-7">
         <div class="description-blur"></div>
         <h2>我們的餐廳是幸福和美味的結合，<br>是您開啟一天的幸福之旅的最佳起點。</h2><br><br>
@@ -12,6 +14,7 @@
             滿幸福的用餐體驗。</h2>
       </div>
       <!-- description -->
+
       <!-- 公告 swiper -->
       <v-swiper
           :pagination="{
@@ -31,37 +34,42 @@
   <div class="container-fluid bg-primary">
     <!-- 每日特餐 -->
         <!-- swiper card -->
+        <h2 class="text-white pt-2">每日推薦</h2>
         <v-swiper
             :slidesPerView="3"
             :spaceBetween="30"
             :pagination="{
-            clickable: true,
+              clickable: true,
             }"
+            :navigation="true"
             :modules="modules"
             class="mySwiper py-2 px-4"
         >
 
-            <v-swiper-slide v-for="item in products" :key="item.id">
-                <div class="col">
-                    <div class="card h-100">
-                        <img :src="item.imageUrl" class="card-img-top" :alt="item.title">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ item.title }}</h5>
-                            <div class="card-text mt-2">
-                                <div class="h5" v-if="item.origin_price === item.price">NT${{ item.price }}</div>
-                                <div v-else>
-                                    <span class="h5 me-1">NT${{ item.price }}</span>
-                                    <del class="h6 text-danger">NT${{ item.origin_price }}</del>
-                                </div>
-                            </div>
-                            <!-- @click="" -->
-                            <div>
-                                <button class="btn btn-secondary mt-2" type="button">加入購物車</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </v-swiper-slide>
+          <v-swiper-slide v-for="item in products" :key="item.id">
+              <div class="col pb-4">
+                  <div class="card h-100">
+                      <img :src="item.imageUrl" class="card-img-top" :alt="item.title">
+                      <div class="card-body">
+                          <h5 class="card-title">{{ item.title }}</h5>
+                          <div class="card-text mt-2">
+                              <div class="h5" v-if="item.origin_price === item.price">NT${{ item.price }}</div>
+                              <div v-else>
+                                  <span class="h5 me-1">NT${{ item.price }}</span>
+                                  <del class="h6 text-danger">NT${{ item.origin_price }}</del>
+                              </div>
+                          </div>
+                          <!-- @click="" -->
+                          <div>
+                              <button class="btn btn-secondary mt-2 text-light" type="button" @click="add_cart(item.id,1,'new')">加入購物車</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </v-swiper-slide>
+
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
         </v-swiper>
         <!-- 每日特餐 -->
   </div>
@@ -95,6 +103,7 @@
 
 <script>
 import FairyLoading from '@/components/FairyLoading.vue'
+import AlertMessages from '@/components/AlertMessages.vue'
 import AOS from 'aos'
 import { Pagination, Navigation } from 'swiper/modules'
 const { VITE_APP_API_URL: apiUrl, VITE_APP_API_NAME: apiPath } = import.meta.env
@@ -107,7 +116,8 @@ export default {
     }
   },
   components: {
-    FairyLoading
+    FairyLoading,
+    AlertMessages
   },
   setup () {
     const modules = [Pagination, Navigation]
@@ -124,6 +134,33 @@ export default {
         this.products = products
       }).catch((err) => {
         alert(err)
+      }).finally(() => {
+        this.isLoading = false
+      })
+    },
+    add_cart (id, qty = 1, flg) {
+      let api = ''
+      let http = ''
+      const message = `加入購物車成功，新增${qty}筆商品~~`
+      this.isLoading = true
+
+      if (flg === 'new') {
+        api = `${apiUrl}/api/${apiPath}/cart`
+        http = 'post'
+      } else {
+        api = `${apiUrl}/api/${apiPath}/cart/${flg}`
+        http = 'put'
+      }
+
+      const cart = {
+        product_id: id,
+        qty
+      }
+
+      this.axios[http](api, { data: cart }).then((res) => {
+        this.$refs.AlertMessages.show_toast(message)
+      }).catch((err) => {
+        this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
       }).finally(() => {
         this.isLoading = false
       })
