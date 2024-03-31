@@ -1,7 +1,7 @@
 <template>
     <ul class="nav narbar position-fixed w-100 bg-primary text-white fw-bold px-2 justify-content-between z-3 top-0">
         <div>
-            <li class="nav-item ms-4">
+            <li class="nav-item ms-4 col-12">
                 <!-- <h1>好不幸福早餐店</h1> -->
                 <!-- <RouterLink to="/home" class="Logo nav-link"> -->
                     <img src="https://storage.googleapis.com/vue-course-api.appspot.com/dollob_api/1711250508957.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=L5bMIXsNqXrbJsZdRc1c2XRmdQSrn%2Brq%2FltzYJQjxjZ7%2FGqiMPl%2BK4LibQRXBKY67MVbx%2BBTlHKvR7p1LyqjwoDTC3kd4Y1fFh8IbKAvb3wn9SU6yNh4R%2FonSZ%2BailLNZqWm2yCB%2BxF50S65JJeMzpw0MNXIn%2FwX7y1vkTYaIZCEFQrzXl3n0ISS5ya5N6Qr7RLBj2S7kpdlDgUdvgjPf6B0O0QLA6YBrislOPO%2BYp8I%2FfdkM86jH2FA2EwImbNREVWKnW1OQfecyxSvvi1o3FusmZzypDanuYjh1IBzkbknqesqpRc42v2UnYUz5gO%2FAFvnNfZJPGgvMYyF7GOArw%3D%3D"
