@@ -2,7 +2,7 @@
     <div class="bg-black w-100 position-relative bottom-0">
         <div class="container">
             <div class="d-flex pt-1">
-                <ul class="text-white">
+                <ul class="text-white" data-aos="fade-left">
                     <li class="nav-item">
                         <RouterLink to="/home" class="nav-link">
                             <img src="https://storage.googleapis.com/vue-course-api.appspot.com/dollob_api/1711251316866.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=mktI3HWO3w9YqWZCy71jMXTTggBMgUtbGJ1VEizol73xK9QQmc3d%2FUkeOHg42F7Po1RToxZZ6ZmdVrl8oHJIkK7nnRF3COgy1S8sivLpDChVXl%2FHbvqsnx8WR0rIqVRcujN5uXbnl1dYZ5S2%2FWdYiRSr1nmYWfSwisVIeQBJyEnsndP3w5xf0Yf7vEMj2fAt1lGQ1Z%2FpAqQbxTssMCocAZzCTVlM5f5MooH%2BBY3VX7TeibPRIcl7B5WoKb4XyPtvWGlKvO28Mym%2F4zNPuwnhLUoA9ggiyNxG29VPv2ktyD9kL8T3sNYhDvgvJrySB%2BmrkM%2FSfbWXtytV4a4EqjsQpA%3D%3D"
@@ -25,7 +25,7 @@
                 </ul>
                 <ul class="text-start d-flex flex-column justify-content-between">
                     <div></div>
-                    <div class="d-flex">
+                    <div class="d-flex" data-aos="fade-left">
                         <li class="nav-item">
                             <!-- FB -->
                             <a href="https://www.facebook.com/?locale=zh_TW">
