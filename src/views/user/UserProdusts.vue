@@ -7,47 +7,29 @@
     <!-- 訊息 -->
     <div class="container">
         <div class="my-4">
-          <!-- <div class="row row-cols-1 row-cols-md-3 g-4" v-for="item in products" :key="item.id">
-            <div class="col">
-                <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="...">
+          <div class="row row-cols-1 row-cols-md-3 g-4" v-for="item in products" :key="item.id">
+            <!-- <div class="col-3  pb-0  " data-aos="flip-left"></div> -->
+                <div class="col">
+                  <div class="card h-100 px-0">
+                    <img :src="item.imageUrl" class="card-img-top" :alt="item.title">
                     <div class="card-body">
                         <h5 class="card-title">{{ item.title }}</h5>
-                        <p class="card-text">{{ item. }}</p>
-                    </div>
+                        <div class="card-text mt-2">
+                            <div class="h5" v-if="item.origin_price === item.price">NT${{ item.price }}</div>
+                            <div v-else>
+                                <span class="h5 me-1">NT${{ item.price }}</span>
+                                <del class="h6 text-danger">NT${{ item.origin_price }}</del>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-secondary mt-2 text-light" type="button" @click="add_cart(item.id,1,'new')">加入購物車</button>
+                        </div>
+                      </div>
+                  </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a short card.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                </div>
-            </div>
-        </div> -->
 
-        <!-- <div></div> -->
-            <table class="table align-middle border-primary border-top border-start border-end">
+            <!-- <table class="table align-middle border-primary border-top border-start border-end">
                 <thead class="table-primary">
                     <tr>
                     <th>圖片</th>
@@ -73,21 +55,19 @@
                     </td>
                     <td>
                         <div class="btn-group btn-group-sm">
-                        <!-- <button type="button" class="btn btn-outline-secondary"> -->
-                            <RouterLink  class="btn btn-outline-primary" :to="`/product/${item.id}`">
-                                <i class="fas fa-spinner fa-pulse" v-if="isLoading"></i>
-                                查看更多
-                            </RouterLink>
-                        <!-- </button> -->
-                        <button type="button" class="btn btn-secondary text-white" @click="add_cart(item.id,1,'new')">
-                            <i class="fas fa-spinner fa-pulse" v-if="isLoading"></i>
-                            加到購物車
-                        </button>
+                          <RouterLink  class="btn btn-outline-primary" :to="`/product/${item.id}`">
+                              <i class="fas fa-spinner fa-pulse" v-if="isLoading"></i>
+                              查看更多
+                          </RouterLink>
+                          <button type="button" class="btn btn-secondary text-white" @click="add_cart(item.id,1,'new')">
+                              <i class="fas fa-spinner fa-pulse" v-if="isLoading"></i>
+                              加到購物車
+                          </button>
                         </div>
                     </td>
                     </tr>
                 </tbody>
-            </table>
+            </table> -->
         </div>
     </div>
 </template>

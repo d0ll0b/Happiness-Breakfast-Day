@@ -10,10 +10,10 @@
       <div class="w-100 description text-white d-flex flex-column justify-content-between py-7">
         <div class="description-blur"></div>
         <h2 data-aos="fade-down-right">我們的餐廳是幸福和美味的結合，<br>是您開啟一天的幸福之旅的最佳起點。</h2><br><br>
-        <h2 data-aos="fade-down-left">無論您是想要輕鬆享受一頓早餐還是慶祝特殊時刻，<br>我們都能為您打造一個充
+        <h2 data-aos="fade-down-left" class="animate__fadeInDown">無論您是想要輕鬆享受一頓早餐還是慶祝特殊時刻，<br>我們都能為您打造一個充
             滿幸福的用餐體驗。</h2>
-        <div class="down-arrow pt-auto pe-0 mx-auto">
-          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-chevron-double-down animate__bounceInDown" viewBox="0 0 16 16">
+        <div class="down-arrow pt-auto pe-0 mx-auto animate__slideOutDown">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-chevron-double-downn" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
             <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
           </svg>
@@ -22,7 +22,7 @@
       <!-- description -->
 
       <!-- 公告 swiper -->
-      <v-swiper
+      <!-- <v-swiper
           :pagination="{
           dynamicBullets: true,
           }"
@@ -33,7 +33,7 @@
           <v-swiper-slide v-for="item in products" :key="item.id">
               <img class="img-fluid" :src="item.imageUrl" alt="">
           </v-swiper-slide>
-      </v-swiper>
+      </v-swiper> -->
       <!-- 公告 swiper -->
   </div>
 
