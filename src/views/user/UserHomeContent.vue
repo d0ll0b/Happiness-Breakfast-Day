@@ -37,12 +37,22 @@
       <!-- 公告 swiper -->
   </div>
 
-  <div class="container-fluid bg-primary">
+  <div class="container-fuild bg-primary">
     <!-- 每日特餐 -->
-        <!-- swiper card -->
+        <!-- swiper card :slidesPerView="3" -->
         <h2 class="text-white pt-2">每日推薦</h2>
         <v-swiper
-            :slidesPerView="3"
+            :breakpoints="{
+              1: {
+                slidesPerView: 1
+              },
+              768: {
+                slidesPerView: 2
+              },
+              996: {
+                slidesPerView: 3
+              }
+            }"
             :spaceBetween="30"
             :pagination="{
               clickable: true,
