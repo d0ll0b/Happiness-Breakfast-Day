@@ -8,12 +8,9 @@
     <div class="container">
         <div class="d-flex row">
             <!-- 購物車列表 -->
-            <div class="d-flex mt-4 justify-content-between">
+            <div class="d-flex mt-4 justify-content-start">
                 <div>
                     <h2>購物車</h2>
-                </div>
-                <div>
-                    <button class="btn btn-outline-danger" type="button" v-if="carts.length" @click="delete_cart()">清空購物車</button>
                 </div>
             </div>
             <!-- table-bordered -->
@@ -21,8 +18,9 @@
                 <thead class="table-primary">
                     <tr>
                         <th class="text-start">品名</th>
-                        <th style="width: 150px">數量/單位</th>
-                        <th class="text-end">單價</th>
+                        <th>單價</th>
+                        <th style="width: 150px">數量</th>
+                        <th class="text-end">小計</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -30,11 +28,15 @@
                     <template v-if="carts">
                     <tr v-for="item in carts" :key="item.id">
                         <td class="text-start d-flex justify-content-around">
+                            <img class="img-fluid" :src="item.product.imageUrl" alt="" width="120" height="120">
                             {{ item.product.title }}
                             <div class="text-success" v-if="item.coupon">
                                 已套用優惠券
                             </div>
-                            <img class="img-fluid" :src="item.product.imageUrl" alt="" width="150" height="150">
+                        </td>
+                        <td>
+                            <small class="text-success" v-if="item.coupon">折扣價：</small>
+                            {{ item.product.price }}
                         </td>
                         <td>
                             <div class="input-group input-group-sm">
@@ -57,19 +59,25 @@
                     </tr>
                     </template>
                 </tbody>
-                <tfoot>
+                <tfoot class="table-primary">
                     <tr>
-                    <td colspan="3" class="text-end">總計</td>
-                    <td class="text-end">{{ total }}</td>
+                    <td colspan="4" class="text-end">總計</td>
+                    <td colspan="3" class="text-center">{{ total }}</td>
                     </tr>
-                    <tr v-if="carts.total !== carts.finalTotal">
-                    <td colspan="3" class="text-end text-success">折扣價</td>
-                    <td class="text-end text-success">{{ finalTotal }}</td>
+                    <!-- v-if="carts.total !== carts.finalTotal" -->
+                    <tr>
+                    <td colspan="4" class="text-end text-success">折扣價</td>
+                    <td colspan="3" class="text-center text-success">{{ finalTotal }}</td>
                     </tr>
                 </tfoot>
             </table>
-            <div class="text-end mb-4">
-                <button class="btn btn-primary" type="button" :class="{ 'disabled': !carts.length }" @click="this.$router.push('/checkout')">前往結帳</button>
+            <div class="text-end mb-4 d-flex justify-content-between">
+                <div>
+                    <button class="btn btn-outline-danger" type="button" v-if="carts.length" @click="delete_cart()">清空購物車</button>
+                </div>
+                <div>
+                    <button class="btn btn-primary" type="button" :class="{ 'disabled': !carts.length }" @click="this.$router.push('/checkout')">前往結帳</button>
+                </div>
             </div>
         </div>
     </div>
