@@ -7,9 +7,10 @@
     <!-- 訊息 -->
     <div class="container">
         <div class="my-4">
-          <div class="row row-cols-1 row-cols-md-3 g-4" v-for="item in products" :key="item.id">
+          <!-- <h1>全部商品</h1> -->
+          <!-- <div class="row row-cols-1 row-cols-md-3 g-4" v-for="item in products" :key="item.id"> -->
             <!-- <div class="col-3  pb-0  " data-aos="flip-left"></div> -->
-                <div class="col">
+                <!-- <div class="col">
                   <div class="card h-100 px-0">
                     <img :src="item.imageUrl" class="card-img-top" :alt="item.title">
                     <div class="card-body">
@@ -27,9 +28,9 @@
                       </div>
                   </div>
                 </div>
-            </div>
+            </div> -->
 
-            <!-- <table class="table align-middle border-primary border-top border-start border-end">
+            <table class="table align-middle border-primary border-top border-start border-end">
                 <thead class="table-primary">
                     <tr>
                     <th>圖片</th>
@@ -67,7 +68,7 @@
                     </td>
                     </tr>
                 </tbody>
-            </table> -->
+            </table>
         </div>
     </div>
 </template>
@@ -75,7 +76,8 @@
 <script>
 import FairyLoading from '@/components/FairyLoading.vue'
 import AlertMessages from '@/components/AlertMessages.vue'
-
+import { mapActions } from 'pinia'
+import cartStore from '@/stores/cartStore.js'
 const { VITE_APP_API_URL: apiUrl, VITE_APP_API_NAME: apiPath } = import.meta.env
 
 export default {
@@ -141,12 +143,14 @@ export default {
 
       this.axios[http](api, { data: cart }).then((res) => {
         this.$refs.AlertMessages.show_toast(message)
+        this.get_cart()
       }).catch((err) => {
         this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
       }).finally(() => {
         this.isLoading = false
       })
-    }
+    },
+    ...mapActions(cartStore, ['get_cart'])
   },
   mounted () {
     this.get_products()

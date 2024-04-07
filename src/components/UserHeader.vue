@@ -2,11 +2,10 @@
     <ul class="nav narbar position-fixed w-100 bg-primary text-white fw-bold px-2 justify-content-between z-3 top-0">
         <div>
             <li class="nav-item ms-4">
-                <!-- <h1>好不幸福早餐店</h1> -->
-                <!-- <RouterLink to="/home" class="Logo nav-link"> -->
+                <RouterLink to="/home" class="Logo navbar-brand">
                     <img src="https://storage.googleapis.com/vue-course-api.appspot.com/dollob_api/1711250508957.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=L5bMIXsNqXrbJsZdRc1c2XRmdQSrn%2Brq%2FltzYJQjxjZ7%2FGqiMPl%2BK4LibQRXBKY67MVbx%2BBTlHKvR7p1LyqjwoDTC3kd4Y1fFh8IbKAvb3wn9SU6yNh4R%2FonSZ%2BailLNZqWm2yCB%2BxF50S65JJeMzpw0MNXIn%2FwX7y1vkTYaIZCEFQrzXl3n0ISS5ya5N6Qr7RLBj2S7kpdlDgUdvgjPf6B0O0QLA6YBrislOPO%2BYp8I%2FfdkM86jH2FA2EwImbNREVWKnW1OQfecyxSvvi1o3FusmZzypDanuYjh1IBzkbknqesqpRc42v2UnYUz5gO%2FAFvnNfZJPGgvMYyF7GOArw%3D%3D"
                         alt="好不幸福早餐店" width="300" height="100" class="Logo">
-                <!-- </RouterLink> -->
+                </RouterLink>
             </li>
         </div>
         <div class="d-flex pe-3 d-none d-sm-flex">
@@ -26,10 +25,14 @@
                 </RouterLink>
             </li>
             <li class="nav-item ms-4 my-auto">
-                <RouterLink to="/cart" class="nav-link py-auto">購物車
+                <RouterLink to="/cart" class="nav-link py-auto position-relative">購物車
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
                     </svg>
+                    <span class="position-absolute top-25 start-20 translate-middle badge rounded-pill bg-secondary" v-if="this.carts?.length">
+                        {{ this.carts?.length }}
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
                 </RouterLink>
             </li>
             <li class="nav-item ms-4 my-auto">
@@ -39,6 +42,30 @@
                     </svg>
                 </RouterLink>
             </li>
+            <!-- offcanvas -->
+            <li class="nav-item ms-4 my-auto d-none">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </li>
+            <!-- offcanvas -->
         </div>
     </ul>
 </template>
+
+<script>
+import { mapActions, mapState } from 'pinia'
+import cartStore from '@/stores/cartStore.js'
+
+export default {
+  computed: {
+    ...mapState(cartStore, ['carts'])
+  },
+  methods: {
+    ...mapActions(cartStore, ['get_cart'])
+  },
+  mounted () {
+    this.get_cart()
+  }
+}
+</script>

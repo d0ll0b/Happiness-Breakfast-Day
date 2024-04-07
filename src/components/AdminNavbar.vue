@@ -5,8 +5,10 @@
     <ul class="nav sidebar position-fixed flex-column h-100 bg-black text-white fw-bold px-2 overflow-hidden justify-content-start">
       <div>
         <li class="nav-item mt-2">
-          <img src="https://storage.googleapis.com/vue-course-api.appspot.com/dollob_api/1711251316866.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=mktI3HWO3w9YqWZCy71jMXTTggBMgUtbGJ1VEizol73xK9QQmc3d%2FUkeOHg42F7Po1RToxZZ6ZmdVrl8oHJIkK7nnRF3COgy1S8sivLpDChVXl%2FHbvqsnx8WR0rIqVRcujN5uXbnl1dYZ5S2%2FWdYiRSr1nmYWfSwisVIeQBJyEnsndP3w5xf0Yf7vEMj2fAt1lGQ1Z%2FpAqQbxTssMCocAZzCTVlM5f5MooH%2BBY3VX7TeibPRIcl7B5WoKb4XyPtvWGlKvO28Mym%2F4zNPuwnhLUoA9ggiyNxG29VPv2ktyD9kL8T3sNYhDvgvJrySB%2BmrkM%2FSfbWXtytV4a4EqjsQpA%3D%3D"
+          <RouterLink to="/admin/products" class="navbar-brand">
+            <img src="https://storage.googleapis.com/vue-course-api.appspot.com/dollob_api/1711251316866.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=mktI3HWO3w9YqWZCy71jMXTTggBMgUtbGJ1VEizol73xK9QQmc3d%2FUkeOHg42F7Po1RToxZZ6ZmdVrl8oHJIkK7nnRF3COgy1S8sivLpDChVXl%2FHbvqsnx8WR0rIqVRcujN5uXbnl1dYZ5S2%2FWdYiRSr1nmYWfSwisVIeQBJyEnsndP3w5xf0Yf7vEMj2fAt1lGQ1Z%2FpAqQbxTssMCocAZzCTVlM5f5MooH%2BBY3VX7TeibPRIcl7B5WoKb4XyPtvWGlKvO28Mym%2F4zNPuwnhLUoA9ggiyNxG29VPv2ktyD9kL8T3sNYhDvgvJrySB%2BmrkM%2FSfbWXtytV4a4EqjsQpA%3D%3D"
               alt="好不幸福早餐店">
+          </RouterLink>
         </li>
       </div>
 

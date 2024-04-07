@@ -40,8 +40,10 @@
 <script>
 import FairyLoading from '@/components/FairyLoading.vue'
 import AlertMessages from '@/components/AlertMessages.vue'
-let id = ''
+import { mapActions } from 'pinia'
+import cartStore from '@/stores/cartStore.js'
 
+let id = ''
 const { VITE_APP_API_URL: apiUrl, VITE_APP_API_NAME: apiPath } = import.meta.env
 
 export default {
@@ -91,6 +93,7 @@ export default {
 
       this.axios[http](api, { data: cart }).then((res) => {
         this.$refs.AlertMessages.show_toast(message)
+        this.get_cart()
       }).catch((err) => {
         this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
       }).finally(() => {
@@ -99,7 +102,8 @@ export default {
     },
     toastMsg (message) {
       this.$refs.messageToast.show_toast(message)
-    }
+    },
+    ...mapActions(cartStore, ['get_cart'])
   },
   mounted () {
     id = this.$route.params.id
