@@ -23,6 +23,11 @@
 .card-img-top {
     height: 20rem;
     object-fit: cover;
+    transition: all 0.5s;
+
+    &:hover{
+		transform: scale(1.2);
+	}
 }
 
 .top-25 {
