@@ -10,7 +10,7 @@
             <!-- 購物車列表 -->
             <div class="d-flex mt-4 justify-content-start">
                 <div>
-                    <h2>購物車</h2>
+                    <h2 class="text-primary">購物車</h2>
                 </div>
             </div>
             <table class="table align-middle border-primary border-top border-start border-end mt-4">
@@ -63,8 +63,8 @@
                 </tbody>
                 <tfoot class="table-primary">
                     <tr>
-                    <td colspan="4" class="text-end">總計</td>
-                    <td colspan="3" class="text-center">NT$ {{ total }}</td>
+                      <td colspan="4" class="text-end">總計</td>
+                      <td colspan="3" class="text-center">NT$ {{ total }}</td>
                     </tr>
                     <tr v-if="carts.total !== carts.finalTotal">
                       <td colspan="4" class="text-end text-success">折扣價</td>
@@ -81,8 +81,8 @@
                 </div>
             </div>
         </div>
-
         <!-- 更多推薦 -->
+        <h2 class="text-start text-primary mb-2">更多推薦</h2>
         <v-swiper
             :breakpoints="{
               1: {
@@ -99,7 +99,6 @@
             :pagination="{
               clickable: true,
             }"
-            :navigation="true"
             :modules="modules"
             class="mySwiper py-2 px-4"
         >
@@ -107,7 +106,8 @@
           <v-swiper-slide v-for="item in products" :key="item.id">
               <div class="col pb-4">
                   <div class="card h-100">
-                      <img :src="item.imageUrl" class="card-img-top" :alt="item.title" data-aos="flip-left">
+                    <!-- data-aos="flip-left" -->
+                      <img :src="item.imageUrl" class="card-img-top" :alt="item.title">
                       <div class="card-body">
                           <h5 class="card-title">{{ item.title }}</h5>
                           <div class="card-text mt-2">
@@ -253,6 +253,7 @@ export default {
   },
   mounted () {
     this.get_cart()
+    this.get_product()
   }
 }
 </script>
