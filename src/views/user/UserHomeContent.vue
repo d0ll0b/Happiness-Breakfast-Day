@@ -57,7 +57,6 @@
               clickable: true,
             }"
             :navigation="true"
-            :slidesPerGroup="3"
             :modules="modules"
             class="mySwiper py-2 px-4"
         >

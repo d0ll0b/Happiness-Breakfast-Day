@@ -81,6 +81,51 @@
                 </div>
             </div>
         </div>
+
+        <!-- 更多推薦 -->
+        <v-swiper
+            :breakpoints="{
+              1: {
+                slidesPerView: 1
+              },
+              768: {
+                slidesPerView: 2
+              },
+              996: {
+                slidesPerView: 3
+              }
+            }"
+            :spaceBetween="30"
+            :pagination="{
+              clickable: true,
+            }"
+            :navigation="true"
+            :modules="modules"
+            class="mySwiper py-2 px-4"
+        >
+
+          <v-swiper-slide v-for="item in products" :key="item.id">
+              <div class="col pb-4">
+                  <div class="card h-100">
+                      <img :src="item.imageUrl" class="card-img-top" :alt="item.title" data-aos="flip-left">
+                      <div class="card-body">
+                          <h5 class="card-title">{{ item.title }}</h5>
+                          <div class="card-text mt-2">
+                              <div class="h5" v-if="item.origin_price === item.price">NT${{ item.price }}</div>
+                              <div v-else>
+                                  <span class="h5 me-1">NT${{ item.price }}</span>
+                                  <del class="h6 text-danger">NT${{ item.origin_price }}</del>
+                              </div>
+                          </div>
+                          <div>
+                              <button class="btn btn-secondary mt-2 text-light" type="button" @click="add_cart(item.id,1,'new')">加入購物車</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </v-swiper-slide>
+        </v-swiper>
+        <!-- 更多推薦 -->
     </div>
 </template>
 
@@ -89,6 +134,7 @@ import FairyLoading from '@/components/FairyLoading.vue'
 import AlertMessages from '@/components/AlertMessages.vue'
 import { mapActions, mapState } from 'pinia'
 import cartStore from '@/stores/cartStore.js'
+import { Pagination, Navigation } from 'swiper/modules'
 const { VITE_APP_API_URL: apiUrl, VITE_APP_API_NAME: apiPath } = import.meta.env
 
 export default {
@@ -105,12 +151,18 @@ export default {
           address: ''
         },
         message: ''
-      }
+      },
+      products: {}
     }
   },
   components: {
     FairyLoading,
     AlertMessages
+  },
+  setup () {
+    const modules = [Pagination, Navigation]
+
+    return { modules }
   },
   computed: {
     ...mapState(cartStore, ['carts'])
@@ -181,6 +233,18 @@ export default {
         this.$refs.AlertMessages.show_toast('訂單已成交，謝謝~~')
       }).catch((err) => {
         this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
+      }).finally(() => {
+        this.isLoading = false
+      })
+    }, // 取得所有商品
+    get_product () {
+      this.isLoading = true
+      const api = `${apiUrl}/api/${apiPath}/products`
+      this.axios.get(api).then((res) => {
+        const { products } = res.data
+        this.products = products
+      }).catch((err) => {
+        alert(err)
       }).finally(() => {
         this.isLoading = false
       })

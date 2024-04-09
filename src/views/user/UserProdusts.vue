@@ -7,30 +7,28 @@
     <!-- 訊息 -->
     <div class="container">
         <div class="my-4">
-          <!-- <h1>全部商品</h1> -->
-          <!-- <div class="row row-cols-1 row-cols-md-3 g-4" v-for="item in products" :key="item.id"> -->
-            <!-- <div class="col-3  pb-0  " data-aos="flip-left"></div> -->
-                <!-- <div class="col">
-                  <div class="card h-100 px-0">
-                    <img :src="item.imageUrl" class="card-img-top" :alt="item.title">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ item.title }}</h5>
-                        <div class="card-text mt-2">
-                            <div class="h5" v-if="item.origin_price === item.price">NT${{ item.price }}</div>
-                            <div v-else>
-                                <span class="h5 me-1">NT${{ item.price }}</span>
-                                <del class="h6 text-danger">NT${{ item.origin_price }}</del>
-                            </div>
+          <h1 class="text-primary mb-2">全部商品</h1>
+          <ul class="row row-cols-1 row-cols-md-3 g-4">
+            <li class="col" v-for="item in products" :key="item.id">
+              <div class="card h-100 px-0">
+                <img :src="item.imageUrl" class="card-img-top" :alt="item.title">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <div class="card-text mt-2">
+                        <div class="h5" v-if="item.origin_price === item.price">NT${{ item.price }}</div>
+                        <div v-else>
+                            <span class="h5 me-1">NT${{ item.price }}</span>
+                            <del class="h6 text-danger">NT${{ item.origin_price }}</del>
                         </div>
-                        <div>
-                            <button class="btn btn-secondary mt-2 text-light" type="button" @click="add_cart(item.id,1,'new')">加入購物車</button>
-                        </div>
-                      </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-secondary mt-2 text-light" type="button" @click="add_cart(item.id,1,'new')">加入購物車</button>
+                    </div>
                   </div>
-                </div>
-            </div> -->
+              </div>
+            </li>
 
-            <table class="table align-middle border-primary border-top border-start border-end">
+            <!-- <table class="table align-middle border-primary border-top border-start border-end">
                 <thead class="table-primary">
                     <tr>
                     <th>圖片</th>
@@ -68,7 +66,8 @@
                     </td>
                     </tr>
                 </tbody>
-            </table>
+            </table> -->
+          </ul>
         </div>
     </div>
 </template>
