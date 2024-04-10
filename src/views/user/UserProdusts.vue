@@ -11,20 +11,22 @@
           <ul class="row row-cols-1 row-cols-md-3 g-4">
             <li class="col" v-for="item in products" :key="item.id">
               <div class="card h-100 px-0">
-                <img :src="item.imageUrl" class="card-img-top" :alt="item.title">
+                <router-link :to="`/product/${item.id}`" class="img-router" data-aos="flip-left">
+                  <img :src="item.imageUrl" class="card-img-top" :alt="item.title">
+                </router-link>
                 <div class="card-body">
-                    <h5 class="card-title">{{ item.title }}</h5>
-                    <div class="card-text mt-2">
-                        <div class="h5" v-if="item.origin_price === item.price">NT${{ item.price }}</div>
-                        <div v-else>
-                            <span class="h5 me-1">NT${{ item.price }}</span>
-                            <del class="h6 text-danger">NT${{ item.origin_price }}</del>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="btn btn-secondary mt-2 text-light" type="button" @click="add_cart(item.id,1,'new')">加入購物車</button>
-                    </div>
+                  <h5 class="card-title">{{ item.title }}</h5>
+                  <div class="card-text mt-2">
+                      <div class="h5" v-if="item.origin_price === item.price">NT${{ item.price }}</div>
+                      <div v-else>
+                          <span class="h5 me-1">NT${{ item.price }}</span>
+                          <del class="h6 text-danger">NT${{ item.origin_price }}</del>
+                      </div>
                   </div>
+                  <div>
+                      <button class="btn btn-secondary mt-2 text-light" type="button" @click="add_cart(item.id,1,'new')">加入購物車</button>
+                  </div>
+                </div>
               </div>
             </li>
 
@@ -54,7 +56,7 @@
                     </td>
                     <td>
                         <div class="btn-group btn-group-sm">
-                          <RouterLink  class="btn btn-outline-primary" :to="`/product/${item.id}`">
+                          <RouterLink  class="btn btn-outline-primary">
                               <i class="fas fa-spinner fa-pulse" v-if="isLoading"></i>
                               查看更多
                           </RouterLink>

@@ -9,8 +9,8 @@
       <!-- description -->
       <div class="w-100 description text-white d-flex flex-column justify-content-between py-7">
         <div class="description-blur"></div>
-        <h2 data-aos="fade-down-right">我們的餐廳是幸福和美味的結合，<br>是您開啟一天的幸福之旅的最佳起點。</h2><br><br>
-        <h2 data-aos="fade-down-left" data-animation="fadeInDown">無論您是想要輕鬆享受一頓早餐還是慶祝特殊時刻，<br>我們都能為您打造一個充
+        <h2 class="description-text" data-aos="fade-down-right">我們的餐廳是幸福和美味的結合，<br>是您開啟一天的幸福之旅的最佳起點。</h2><br><br>
+        <h2 class="description-text d-none d-sm-block" data-aos="fade-down-left" data-animation="fadeInDown">無論您是想要輕鬆享受一頓早餐還是慶祝特殊時刻，<br>我們都能為您打造一個充
             滿幸福的用餐體驗。</h2>
         <div class="down-arrow mt-4 mx-auto animate__animated animate__fadeInDown animate__infinite">
           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-chevron-double-downn" viewBox="0 0 16 16">
@@ -64,7 +64,9 @@
           <v-swiper-slide v-for="item in products" :key="item.id">
               <div class="col pb-4">
                   <div class="card h-100">
-                      <img :src="item.imageUrl" class="card-img-top" :alt="item.title" data-aos="flip-left">
+                      <router-link :to="`/product/${item.id}`" class="img-router" data-aos="flip-left">
+                        <img :src="item.imageUrl" class="card-img-top" :alt="item.title">
+                      </router-link>
                       <div class="card-body">
                           <h5 class="card-title">{{ item.title }}</h5>
                           <div class="card-text mt-2">
@@ -74,7 +76,6 @@
                                   <del class="h6 text-danger">NT${{ item.origin_price }}</del>
                               </div>
                           </div>
-                          <!-- @click="" -->
                           <div>
                               <button class="btn btn-secondary mt-2 text-light" type="button" @click="add_cart(item.id,1,'new')">加入購物車</button>
                           </div>
@@ -139,7 +140,7 @@ export default {
     return { modules }
   },
   methods: {
-    // 取得單一商品
+    // 取得所有商品
     get_product () {
       this.isLoading = true
       const api = `${apiUrl}/api/${apiPath}/products`

@@ -72,7 +72,7 @@
                     </tr>
                 </tfoot>
             </table>
-            <div class="text-end mb-4 d-flex justify-content-between">
+            <div class="text-end mb-4 d-flex justify-content-between bg-primary">
                 <div>
                     <button class="btn btn-outline-danger" type="button" v-if="carts.length" @click="delete_cart()">清空購物車</button>
                 </div>
@@ -82,49 +82,52 @@
             </div>
         </div>
         <!-- 更多推薦 -->
-        <h2 class="text-start text-primary mb-2">更多推薦</h2>
-        <v-swiper
-            :breakpoints="{
-              1: {
-                slidesPerView: 1
-              },
-              768: {
-                slidesPerView: 2
-              },
-              996: {
-                slidesPerView: 3
-              }
-            }"
-            :spaceBetween="30"
-            :pagination="{
-              clickable: true,
-            }"
-            :modules="modules"
-            class="mySwiper py-2 px-4"
-        >
+        <div class="bg-primary pb-4">
+          <h2 class="text-center text-light mb-0">更多推薦</h2>
+          <v-swiper
+              :breakpoints="{
+                1: {
+                  slidesPerView: 1
+                },
+                768: {
+                  slidesPerView: 2
+                },
+                996: {
+                  slidesPerView: 3
+                }
+              }"
+              :spaceBetween="30"
+              :pagination="{
+                clickable: true,
+              }"
+              :modules="modules"
+              class="mySwiper py-2 px-4"
+          >
 
-          <v-swiper-slide v-for="item in products" :key="item.id">
-              <div class="col pb-4">
-                  <div class="card h-100">
-                    <!-- data-aos="flip-left" -->
-                      <img :src="item.imageUrl" class="card-img-top" :alt="item.title">
-                      <div class="card-body">
-                          <h5 class="card-title">{{ item.title }}</h5>
-                          <div class="card-text mt-2">
-                              <div class="h5" v-if="item.origin_price === item.price">NT${{ item.price }}</div>
-                              <div v-else>
-                                  <span class="h5 me-1">NT${{ item.price }}</span>
-                                  <del class="h6 text-danger">NT${{ item.origin_price }}</del>
-                              </div>
-                          </div>
-                          <div>
-                              <button class="btn btn-secondary mt-2 text-light" type="button" @click="add_cart(item.id,1,'new')">加入購物車</button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </v-swiper-slide>
-        </v-swiper>
+            <v-swiper-slide v-for="item in products" :key="item.id">
+                <div class="col pb-4">
+                    <div class="card h-100">
+                        <router-link :to="`/product/${item.id}`" class="img-router" data-aos="flip-left">
+                          <img :src="item.imageUrl" class="card-img-top" :alt="item.title">
+                        </router-link>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.title }}</h5>
+                            <div class="card-text mt-2">
+                                <div class="h5" v-if="item.origin_price === item.price">NT${{ item.price }}</div>
+                                <div v-else>
+                                    <span class="h5 me-1">NT${{ item.price }}</span>
+                                    <del class="h6 text-danger">NT${{ item.origin_price }}</del>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-secondary mt-2 text-light" type="button" @click="add_cart(item.id,1,'new')">加入購物車</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </v-swiper-slide>
+          </v-swiper>
+        </div>
         <!-- 更多推薦 -->
     </div>
 </template>

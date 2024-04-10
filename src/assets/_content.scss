@@ -34,3 +34,9 @@
 .top-25 {
     top: 25% !important;
 }
+
+@media (max-width: 768px) {
+    .description-text {
+        font-size: 20px;
+    }
+}
