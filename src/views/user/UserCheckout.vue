@@ -7,9 +7,9 @@
   <!-- 訊息 -->
   <div class="container">
     <div class="d-flex row">
-      <div class="col-7">
+      <div class="col-6 bg-primary" data-aos="fade-right">
         <div class="my-5 mt-4 row justify-content-center">
-          <h2 class="text-primary">訂購人資訊</h2>
+          <h2 class="text-light">訂購人資訊</h2>
           <v-form ref="form" class="mt-4" v-slot="{ errors }" @submit="onSubmit">
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
@@ -47,77 +47,95 @@
               <textarea id="message" class="form-control border-primary" cols="30" rows="10"
                 v-model="form.message"></textarea>
             </div>
-            <div class="text-end">
-              <button type="submit" class="btn btn-primary text-light"
-                :class="{ 'disabled': Object.keys(errors).length !== 0 || !carts.length }">送出訂單</button>
-            </div>
           </v-form>
         </div>
+        <div class="text-end mb-4 d-flex justify-content-between">
+          <div>
+              <button class="btn btn-outline-danger" type="button" v-if="carts.length" @click="delete_cart()">清空購物車</button>
+          </div>
+          <div>
+            <!-- Object.keys(errors).length !== 0 ||  border-dark -->
+            <button type="submit" class="btn btn-secondary text-light border-1 border-light"
+            :class="{ 'disabled': !carts.length }" @click="onSubmit()">送出訂單</button>
+          </div>
+        </div>
       </div>
-      <div class="col-5">
+      <div class="col-6" data-aos="fade-left">
         <!-- 購物車列表 -->
         <div class="d-flex mt-4 justify-content-between">
           <div>
-            <h2 class="text-primary">購物車</h2>
-          </div>
-          <div>
-            <button class="btn btn-outline-danger" type="button" v-if="carts.length"
-              @click="delete_cart()">清空購物車</button>
+            <h2 class="text-primary">購物明細</h2>
           </div>
         </div>
-        <!-- table-bordered -->
         <table class="table align-middle border-primary border-top border-start border-end mt-4">
-          <thead class="table-primary">
-            <tr>
-              <th class="text-start">品名</th>
-              <th style="width: 150px">數量/單位</th>
-              <th class="text-end">單價</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <template v-if="carts">
-              <tr v-for="item in carts" :key="item.id">
-                <td class="text-start d-flex justify-content-around">
-                  {{ item.product.title }}
-                  <div class="text-success" v-if="item.coupon">
-                    已套用優惠券
-                  </div>
-                  <img class="img-fluid" :src="item.product.imageUrl" alt="" width="150" height="150">
-                </td>
-                <td>
-                  <div class="input-group input-group-sm">
-                    <div class="input-group mb-3">
-                      <input min="1" type="number" class="form-control" v-model.number="item.qty" :disabled="isLoading"
-                        @blur="add_cart(item.product_id, item.qty, item.id)">
-                      <span class="input-group-text" id="basic-addon2">{{ item.product.unit }}</span>
-                    </div>
-                  </div>
-                </td>
-                <td class="text-end">
-                  <small class="text-success" v-if="item.coupon">折扣價：</small>
-                  {{ item.product.price }}
-                </td>
-                <td>
-                  <button type="button" class="btn btn-outline-danger btn-sm" @click="delete_cart(item.id)">
-                    <i class="fas fa-spinner fa-pulse" v-if="isLoading"></i>
-                    x
-                  </button>
-                </td>
-              </tr>
-            </template>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="3" class="text-end">總計</td>
-              <td class="text-end">{{ total }}</td>
-            </tr>
-            <tr v-if="carts.total !== carts.finalTotal">
-              <td colspan="3" class="text-end text-success">折扣價</td>
-              <td class="text-end text-success">{{ finalTotal }}</td>
-            </tr>
-          </tfoot>
-        </table>
+              <thead class="table-primary">
+                  <tr>
+                      <th class="text-start w-30">商品</th>
+                      <th>單價</th>
+                      <th style="width: 150px">數量</th>
+                      <th class="text-end">小計</th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <template v-if="carts">
+                  <tr v-for="item in carts" :key="item.id">
+                      <td class="text-start">
+                          <img class="me-3 product_img" :src="item.product.imageUrl" :alt="item.product.title">
+                          {{ item.product.title }}
+                          <div class="text-success" v-if="item.coupon">
+                              已套用優惠券
+                          </div>
+                      </td>
+                      <td>
+                          <small class="text-success" v-if="item.coupon">折扣價：</small>
+                          NT${{ item.product.price }}
+                      </td>
+                      <td>
+                          <div class="input-group input-group-sm">
+                              <div class="input-group">
+                                <input min="1" type="number" class="form-control" v-model.number="item.qty" :disabled="isLoading" @blur="add_cart(item.product_id,item.qty,item.id)">
+                                <span class="input-group-text" id="basic-addon2">{{ item.product.unit }}</span>
+                              </div>
+                          </div>
+                      </td>
+                      <td class="text-end">
+                          <small class="text-success" v-if="item.coupon">折扣價：</small>
+                          NT${{ item.product.price }}
+                      </td>
+                      <td>
+                          <button type="button" class="btn btn-outline-danger btn-sm" @click="delete_cart(item.id)">
+                              <i class="fas fa-spinner fa-pulse" v-if="isLoading"></i>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                              </svg>
+                          </button>
+                      </td>
+                  </tr>
+                  </template>
+              </tbody>
+              <tfoot class="table-primary">
+                  <tr>
+                    <td colspan="4" class="text-end">總計</td>
+                    <td colspan="3" class="text-center">NT$ {{ total }}</td>
+                  </tr>
+                  <tr v-if="carts.total !== carts.finalTotal">
+                    <td colspan="4" class="text-end text-success">折扣價</td>
+                    <td colspan="3" class="text-center text-success">NT${{ finalTotal }}</td>
+                  </tr>
+              </tfoot>
+          </table>
+          <div class="text-end mb-4 d-flex justify-content-between d-none">
+              <div>
+                  <button class="btn btn-outline-danger" type="button" v-if="carts.length" @click="delete_cart()">清空購物車</button>
+              </div>
+              <div>
+                <!-- Object.keys(errors).length !== 0 ||  -->
+                <button type="submit" class="btn btn-primary text-light"
+                :class="{ 'disabled': !carts.length }" @click="onSubmit()">送出訂單</button>
+              </div>
+          </div>
       </div>
     </div>
   </div>
@@ -126,13 +144,13 @@
 <script>
 import FairyLoading from '@/components/FairyLoading.vue'
 import AlertMessages from '@/components/AlertMessages.vue'
-
+import { mapActions, mapState } from 'pinia'
+import cartStore from '@/stores/cartStore.js'
 const { VITE_APP_API_URL: apiUrl, VITE_APP_API_NAME: apiPath } = import.meta.env
 
 export default {
   data () {
     return {
-      carts: {},
       total: '',
       finalTotal: '',
       isLoading: false,
@@ -150,6 +168,9 @@ export default {
   components: {
     FairyLoading,
     AlertMessages
+  },
+  computed: {
+    ...mapState(cartStore, ['carts'])
   },
   methods: {
     add_cart (id, qty = 1, flg) {
@@ -178,22 +199,6 @@ export default {
         this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
       }).finally(() => {
         this.isLoading = false
-        this.$refs.userProductModal.hide_Model()
-      })
-    },
-    get_cart () {
-      this.isLoading = true
-      const api = `${apiUrl}/api/${apiPath}/cart`
-
-      this.axios.get(api).then((res) => {
-        const { carts, total, finalTotal } = res.data.data
-        this.carts = carts
-        this.total = total
-        this.finalTotal = finalTotal
-      }).catch((err) => {
-        this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
-      }).finally(() => {
-        this.isLoading = false
       })
     },
     delete_cart (id = null) {
@@ -215,6 +220,7 @@ export default {
         this.axios.delete(api).then((res) => {
           this.get_cart()
           this.$refs.AlertMessages.show_toast(message)
+          this.$router.push('/home')
         }).catch((err) => {
           this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
         }).finally(() => {
@@ -237,7 +243,8 @@ export default {
       }).finally(() => {
         this.isLoading = false
       })
-    }
+    },
+    ...mapActions(cartStore, ['get_cart'])
   },
   mounted () {
     this.get_cart()

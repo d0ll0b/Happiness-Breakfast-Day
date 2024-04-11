@@ -8,9 +8,9 @@
     <div class="container">
         <div class="d-flex row">
             <!-- 購物車列表 -->
-            <div class="d-flex mt-4 justify-content-start">
+            <div class="d-flex py-4 justify-content-start bg-primary">
                 <div>
-                    <h2 class="text-primary">購物車</h2>
+                    <h2 class="text-light">購物車</h2>
                 </div>
             </div>
             <table class="table align-middle border-primary border-top border-start border-end mt-4">
@@ -72,7 +72,7 @@
                     </tr>
                 </tfoot>
             </table>
-            <div class="text-end mb-4 d-flex justify-content-between bg-primary">
+            <div class="text-end mb-4 d-flex justify-content-between">
                 <div>
                     <button class="btn btn-outline-danger" type="button" v-if="carts.length" @click="delete_cart()">清空購物車</button>
                 </div>
