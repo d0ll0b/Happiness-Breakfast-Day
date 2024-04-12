@@ -257,6 +257,7 @@ export default {
   mounted () {
     this.get_cart()
     this.get_product()
+    // this.$refs.AlertMessages.show_YesNo()
   }
 }
 </script>
