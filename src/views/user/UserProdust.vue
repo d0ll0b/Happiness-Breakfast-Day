@@ -20,7 +20,7 @@
           <!-- d-flex flex-column justify-content-between -->
           <div class="col-sm-6 text-start">
               <span class="badge bg-primary rounded-pill">{{ product.category }}</span>
-              <p class="h5">商品描述：</p><br><p>{{ product.description }}</p><br>
+              <p class="h5">描述：</p><br><p>{{ product.description }}</p><br>
               <!-- <p>商品內容：<br>{{ product.content }}</p> -->
               <del class="h6 text-danger">原價 NT${{ product.origin_price }} 元</del>
               <div class="h5">現在只要 NT${{ product.price }} 元</div>

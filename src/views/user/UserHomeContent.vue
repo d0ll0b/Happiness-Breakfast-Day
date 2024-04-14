@@ -39,6 +39,7 @@
 
   <div class="container-fuild bg-primary">
     <!-- 每日特餐 -->
+    <!-- :navigation="true" -->
         <h2 class="text-white pt-2">每日推薦</h2>
         <v-swiper
             :breakpoints="{
@@ -56,8 +57,11 @@
             :pagination="{
               clickable: true,
             }"
-            :navigation="true"
             :modules="modules"
+            :autoplay="{
+              delay: 2500,
+              disableOnInteraction: false
+            }"
             class="mySwiper py-2 px-4"
         >
 
@@ -118,7 +122,7 @@
 import FairyLoading from '@/components/FairyLoading.vue'
 import AlertMessages from '@/components/AlertMessages.vue'
 import AOS from 'aos'
-import { Pagination, Navigation } from 'swiper/modules'
+import { Pagination, Navigation, Autoplay } from 'swiper/modules'
 import { mapActions } from 'pinia'
 import cartStore from '@/stores/cartStore.js'
 const { VITE_APP_API_URL: apiUrl, VITE_APP_API_NAME: apiPath } = import.meta.env
@@ -135,7 +139,7 @@ export default {
     AlertMessages
   },
   setup () {
-    const modules = [Pagination, Navigation]
+    const modules = [Pagination, Navigation, Autoplay]
 
     return { modules }
   },
