@@ -29,26 +29,26 @@ export default {
         showConfirmButton: false,
         timer
       })
-    },
-    show_YesNo () {
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            title: 'Deleted!',
-            text: 'Your file has been deleted.',
-            icon: 'success'
-          })
-        }
-      })
     }
+    // 暫不使用，測試有問題
+    // show_YesNo (Msg) {
+    //   Swal.fire({
+    //     title: Msg,
+    //     icon: 'warning',
+    //     showCancelButton: true,
+    //     confirmButtonColor: '#A9E2F0',
+    //     cancelButtonColor: '#d33',
+    //     confirmButtonText: '是的',
+    //     cancelButtonText: '考慮一下'
+    //   }).then((result) => {
+    //     if (result.isConfirmed) {
+    //       this.checkYesNo(true)
+    //     }
+    //   })
+    // },
+    // checkYesNo (YesNo) {
+    //   this.$emit('checkYesNo', YesNo)
+    // }
   }
 }
 </script>
