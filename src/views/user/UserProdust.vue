@@ -15,8 +15,43 @@
       <div class="mb-1">
           <div class="row">
               <div class="col-sm-6">
-              <img class="img-fluid" :src="product.imageUrl" alt="">
-          </div>
+                <!-- <img class="img-fluid" :src="product.imageUrl" alt=""> -->
+                <v-swiper
+                  :style="{
+                    '--swiper-navigation-color': '#fff',
+                    '--swiper-pagination-color': '#fff',
+                  }"
+                  :spaceBetween="10"
+                  :navigation="true"
+                  :thumbs="{ swiper: thumbsSwiper }"
+                  :modules="modules"
+                  class="mySwiper2"
+                >
+                  <v-swiper-slide>
+                    <img :src="product.imageUrl" class="product_img" :alt="product.title">
+                  </v-swiper-slide>
+                  <v-swiper-slide v-for="item in product" :key="item.id">
+                    <img :src="item.imagesUrl" class="product_img" :alt="item.title" v-if="!product.imagesUrl.includes('')">
+                  </v-swiper-slide>
+                </v-swiper>
+                <v-swiper
+                  @swiper="setThumbsSwiper"
+                  :spaceBetween="10"
+                  :slidesPerView="3"
+                  :freeMode="true"
+                  :watchSlidesProgress="true"
+                  :modules="modules"
+                  class="mySwiper"
+                >
+                  <v-swiper-slide>
+                    <img :src="product.imageUrl" class="product_img" :alt="product.title">
+                  </v-swiper-slide>
+                  <v-swiper-slide v-for="(item, key) in product" :key="key">
+                    <pre>{{ item.imagesUrl[key] }}</pre>
+                    <img :src="item.imagesUrl[key]" class="product_img" :alt="item.title" v-if="item.imagesUrl[key] !== ''">
+                  </v-swiper-slide>
+                </v-swiper>
+              </div>
           <!-- d-flex flex-column justify-content-between -->
           <div class="col-sm-6 text-start">
               <span class="badge bg-primary rounded-pill">{{ product.category }}</span>
@@ -42,6 +77,7 @@ import FairyLoading from '@/components/FairyLoading.vue'
 import AlertMessages from '@/components/AlertMessages.vue'
 import { mapActions } from 'pinia'
 import cartStore from '@/stores/cartStore.js'
+import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
 
 let id = ''
 const { VITE_APP_API_URL: apiUrl, VITE_APP_API_NAME: apiPath } = import.meta.env
@@ -58,6 +94,19 @@ export default {
     FairyLoading,
     AlertMessages
   },
+  setup () {
+    let thumbsSwiper = ''
+
+    const setThumbsSwiper = (swiper) => {
+      thumbsSwiper = swiper
+    }
+
+    return {
+      thumbsSwiper,
+      setThumbsSwiper,
+      modules: [FreeMode, Navigation, Thumbs]
+    }
+  },
   methods: {
     // 取得單一商品
     get_product () {
@@ -66,6 +115,7 @@ export default {
       this.axios.get(api).then((res) => {
         const { product } = res.data
         this.product = product
+        console.log(this.product)
       }).catch((err) => {
         this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
       }).finally(() => {
