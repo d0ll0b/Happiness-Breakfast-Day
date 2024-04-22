@@ -44,14 +44,14 @@
           <h2 class="text-light">訂購人資訊</h2>
           <v-form ref="form" class="mt-4" v-slot="{ errors }" @submit="onSubmit">
             <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
+              <label for="email" class="form-label">電子郵件</label><span class="text-danger"> *</span>
               <v-field id="email" name="email" type="email" class="form-control border-primary"
                 :class="{ 'is-invalid': errors['email'] }" placeholder="請輸入 Email" rules="email|required"
                 v-model="form.user.email"></v-field>
               <error-message name="email" class="invalid-feedback"></error-message>
             </div>
             <div class="mb-3">
-              <label for="name" class="form-label">收件人姓名</label>
+              <label for="name" class="form-label">訂購人姓名</label><span class="text-danger"> *</span>
               <v-field id="name" name="name" type="text" class="form-control border-primary"
                 :class="{ 'is-invalid': errors['name'] }" placeholder="請輸入姓名" rules="required"
                 v-model="form.user.name"></v-field>
@@ -59,7 +59,7 @@
             </div>
 
             <div class="mb-3">
-              <label for="tel" class="form-label">收件人電話</label>
+              <label for="tel" class="form-label">電話</label><span class="text-danger"> *</span>
               <v-field id="tel" name="tel" type="tel" class="form-control border-primary"
                 :class="{ 'is-invalid': errors['tel'] }" placeholder="請輸入電話" rules="required|minMaxLength:8,10"
                 v-model="form.user.tel"></v-field>
@@ -67,9 +67,9 @@
             </div>
 
             <div class="mb-3">
-              <label for="address" class="form-label">收件人地址</label>
+              <label for="address" class="form-label">預定時間</label><span class="text-danger"> *</span>
               <v-field id="address" name="address" type="text" class="form-control border-primary"
-                :class="{ 'is-invalid': errors['address'] }" placeholder="請輸入地址" rules="required"
+                :class="{ 'is-invalid': errors['address'] }" placeholder="請輸入預定時間" rules="required"
                 v-model="form.user.address"></v-field>
               <error-message name="address" class="invalid-feedback"></error-message>
             </div>
@@ -150,11 +150,11 @@
               <tfoot class="table-primary">
                   <tr>
                     <td colspan="4" class="text-end">總計</td>
-                    <td colspan="3" class="text-center">NT$ {{ total }}</td>
+                    <td colspan="3" class="text-center">NT$ {{ this.total }}</td>
                   </tr>
-                  <tr v-if="carts.total !== carts.finalTotal">
+                  <tr v-if="this.total !== this.finalTotal && this.finalTotal">
                     <td colspan="4" class="text-end text-success">折扣價</td>
-                    <td colspan="3" class="text-center text-success">NT${{ finalTotal }}</td>
+                    <td colspan="3" class="text-center text-success">NT${{ this.finalTotal }}</td>
                   </tr>
               </tfoot>
           </table>
@@ -183,8 +183,6 @@ const { VITE_APP_API_URL: apiUrl, VITE_APP_API_NAME: apiPath } = import.meta.env
 export default {
   data () {
     return {
-      total: '',
-      finalTotal: '',
       isLoading: false,
       form: {
         user: {
@@ -202,7 +200,7 @@ export default {
     AlertMessages
   },
   computed: {
-    ...mapState(cartStore, ['carts'])
+    ...mapState(cartStore, ['carts', 'total', 'finalTotal'])
   },
   methods: {
     add_cart (id, qty = 1, flg) {
