@@ -52,7 +52,8 @@
                 </thead>
                 <tbody>
                     <template v-if="carts">
-                      <tr v-for="item in carts" :key="item.id">
+                      <div v-if="carts.length">
+                        <tr v-for="item in carts" :key="item.id">
                           <td class="text-start">
                               <router-link :to="`/product/${item.product.id}`" class="img-router me-3">
                                 <img :src="item.product.imageUrl" class="product_img" :alt="item.product.title">
@@ -88,10 +89,11 @@
                                   </svg>
                               </button>
                           </td>
-                      </tr>
-                    </template>
-                    <template>
-                      <h4>尚未添購任何商品</h4>
+                        </tr>
+                      </div>
+                      <div v-else>
+                        <h4 class="text-center">尚未添購任何商品</h4>
+                      </div>
                     </template>
                 </tbody>
                 <tfoot class="table-primary">
