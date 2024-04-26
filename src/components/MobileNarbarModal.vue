@@ -71,7 +71,6 @@ export default {
       this.MobileNarbarModal.show()
     },
     hide_Modal () {
-      console.log('OK~')
       this.MobileNarbarModal.hide()
     }
   }

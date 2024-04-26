@@ -22,19 +22,18 @@
                     '--swiper-pagination-color': '#fff',
                   }"
                   :spaceBetween="10"
-                  :navigation="true"
                   :thumbs="{ swiper: thumbsSwiper }"
                   :modules="modules"
                   class="mySwiper2"
                 >
                   <v-swiper-slide>
-                    <img :src="product.imageUrl" class="product_img" :alt="product.title">
+                    <img :src="product.imageUrl" class="main_product_img w-auto h-auto" :alt="product.title">
                   </v-swiper-slide>
                   <v-swiper-slide v-for="item in product" :key="item.id">
-                    <img :src="item.imagesUrl" class="product_img" :alt="item.title" v-if="!product.imagesUrl.includes('')">
+                    <img :src="item.imagesUrl" class="main_product_img w-auto h-auto" :alt="item.title">
                   </v-swiper-slide>
                 </v-swiper>
-                <v-swiper
+                <!-- <v-swiper
                   @swiper="setThumbsSwiper"
                   :spaceBetween="10"
                   :slidesPerView="3"
@@ -50,7 +49,7 @@
                     <pre>{{ item.imagesUrl[key] }}</pre>
                     <img :src="item.imagesUrl[key]" class="product_img" :alt="item.title" v-if="item.imagesUrl[key] !== ''">
                   </v-swiper-slide>
-                </v-swiper>
+                </v-swiper> -->
               </div>
           <!-- d-flex flex-column justify-content-between -->
           <div class="col-sm-6 text-start">
@@ -86,6 +85,7 @@ export default {
   data () {
     return {
       product: {},
+      img: {},
       qty: 1,
       isLoading: false
     }
@@ -115,7 +115,6 @@ export default {
       this.axios.get(api).then((res) => {
         const { product } = res.data
         this.product = product
-        console.log(this.product)
       }).catch((err) => {
         this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
       }).finally(() => {
@@ -153,12 +152,19 @@ export default {
     toastMsg (message) {
       this.$refs.messageToast.show_toast(message)
     },
+    // mixinImg () {
+    //   if (this.product.imagesUrl.length) {
+    //     this.img = this.product.imagesUrl.unshift('TEST')
+    //     console.log(this.img)
+    //   }
+    // },
     ...mapActions(cartStore, ['get_cart'])
   },
   mounted () {
     id = this.$route.params.id
 
     this.get_product()
+    // this.mixinImg()
   }
 }
 </script>

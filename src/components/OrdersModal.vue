@@ -155,7 +155,6 @@ export default {
         case 'edit':
           this.isNew = false
           this.tempOrder = { ...item }
-          console.log(this.tempOrder)
           this.OrdersModal.show()
           break
       }
