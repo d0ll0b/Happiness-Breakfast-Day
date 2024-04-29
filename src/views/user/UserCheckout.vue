@@ -6,7 +6,7 @@
   <alert-messages ref="AlertMessages"></alert-messages>
   <!-- 訊息 -->
   <div class="container">
-    <div class="d-flex row">
+    <div class="d-flex row flex-column flex-lg-row">
       <ul class="d-flex justify-content-evenly bg-primary text-light mb-0 py-2">
         <li class="d-flex flex-column align-items-center">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-1-circle-fill" viewBox="0 0 16 16" v-if="this.$route.path === '/cart'">
@@ -39,7 +39,7 @@
           <span class="fw-bold">完成訂購</span>
         </li>
       </ul>
-      <div class="col-6 bg-primary" data-aos="fade-right">
+      <div class="col-12 col-lg-6 bg-primary" data-aos="fade-right">
         <div class="my-5 mt-4 row justify-content-center">
           <h2 class="text-light">訂購人資訊</h2>
           <v-form ref="form" class="mt-4" v-slot="{ errors }" @submit="onSubmit">
@@ -81,7 +81,7 @@
             </div>
           </v-form>
         </div>
-        <div class="text-end mb-4 d-flex justify-content-between">
+        <div class="text-end mb-4 d-none d-lg-flex justify-content-between">
           <div>
               <button class="btn btn-outline-danger" type="button" v-if="carts.length" @click="delete_cart()">清空購物車</button>
           </div>
@@ -92,7 +92,7 @@
           </div>
         </div>
       </div>
-      <div class="col-6" data-aos="fade-left">
+      <div class="col-12 col-lg-6" data-aos="fade-left">
         <!-- 購物車列表 -->
         <div class="d-flex mt-4 justify-content-between">
           <div>
@@ -158,7 +158,7 @@
                   </tr>
               </tfoot>
           </table>
-          <div class="text-end mb-4 d-flex justify-content-between d-none">
+          <div class="text-end mb-4 d-flex justify-content-between d-lg-none">
               <div>
                   <button class="btn btn-outline-danger" type="button" v-if="carts.length" @click="delete_cart()">清空購物車</button>
               </div>
