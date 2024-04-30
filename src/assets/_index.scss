@@ -28,6 +28,10 @@
     width: 300px;
     height: 100px;
     background: $primary;
+
+    @media (max-width: 768px) {
+        width: 200px;
+    }
 }
 
 .main-pt{

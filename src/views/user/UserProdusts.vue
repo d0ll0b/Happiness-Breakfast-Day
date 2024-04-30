@@ -8,7 +8,7 @@
     <div class="container">
         <div class="my-4">
           <h1 class="text-primary mb-2">全部商品</h1>
-          <ul class="row row-cols-1 row-cols-md-3 g-4">
+          <ul class="row row-cols-1 row-cols-md-3 g-4 ps-0">
             <li class="col" v-for="item in products" :key="item.id">
               <div class="card h-100 px-0">
                 <router-link :to="`/product/${item.id}`" class="img-router" data-aos="flip-left">

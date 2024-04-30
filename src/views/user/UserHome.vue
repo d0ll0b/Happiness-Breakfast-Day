@@ -1,9 +1,9 @@
+<!-- class="main-pt" -->
 <template>
-   <!-- class="d-none" -->
     <header>
         <user-header></user-header>
     </header>
-    <main class="main-pt">
+    <main>
       <RouterView />
     </main>
     <footer>

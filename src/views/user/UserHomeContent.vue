@@ -93,9 +93,9 @@
 
   <div class="container-fuild">
     <!-- location -->
-    <div class="d-flex bg-light">
-        <div class="col-12 col-sm-4 flex-column text-start justify-content-around py-3" data-aos="fade-left">
-            <ul>
+    <div class="d-flex bg-light flex-column flex-sm-row">
+        <div class="col-12 col-sm-4 flex-column text-start justify-content-around py-3">
+            <ul data-aos="fade-left">
                 <h3 class="text-primary mt-3">店鋪資訊</h3><br>
                 <h4>太平洋店</h4><br>
                 <li><span class="h6">地址: </span>太平洋</li><br>
@@ -106,16 +106,13 @@
             </ul>
             <p></p>
         </div>
-        <div class="col-8 d-none d-sm-block " data-aos="fade-up">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3702.747379850056!2d-133.4193056!3d-21.8672778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDUyJzAyLjIiUyAxMzPCsDI1JzA5LjUiVw!5e0!3m2!1szh-TW!2stw!4v1711270962625!5m2!1szh-TW!2stw"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-100 h-100"></iframe>
+        <div class="col-12 col-sm-8">
+            <iframe  data-aos="fade-up" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3702.747379850056!2d-133.4193056!3d-21.8672778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDUyJzAyLjIiUyAxMzPCsDI1JzA5LjUiVw!5e0!3m2!1szh-TW!2stw!4v1711270962625!5m2!1szh-TW!2stw"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-100 h-100"></iframe>
         </div>
     </div>
     <!-- location -->
   </div>
 
-  <div class="container">
-
-  </div>
 </template>
 
 <script>
