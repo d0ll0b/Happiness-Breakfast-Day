@@ -94,8 +94,8 @@
   <div class="container-fuild">
     <!-- location -->
     <div class="d-flex bg-light flex-column flex-sm-row">
-        <div class="col-12 col-sm-4 flex-column text-start justify-content-around py-3">
-            <ul data-aos="fade-left">
+        <div class="col-12 col-sm-4 flex-column text-start justify-content-around py-3" data-aos="fade-left">
+            <ul>
                 <h3 class="text-primary mt-3">店鋪資訊</h3><br>
                 <h4>太平洋店</h4><br>
                 <li><span class="h6">地址: </span>太平洋</li><br>
