@@ -149,7 +149,7 @@ export default {
         const { products } = res.data
         this.products = products
       }).catch((err) => {
-        alert(err)
+        this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
       }).finally(() => {
         this.isLoading = false
       })

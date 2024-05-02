@@ -13,14 +13,14 @@
 // animate.css
 @import 'animate.css';
 
-@import "./_variables";
-@import "./_reset";
-@import "./_loading";
-@import "./_header";
-@import "./_content";
-@import "./_products";
-@import "./_carts";
-@import "./_index";
+@import "./vendors/_variables";
+@import "./base/_reset";
+@import "./components/_loading";
+@import "./layout/_header";
+@import "./pages/_content";
+@import "./pages/_products";
+@import "./pages/_carts";
+@import "./base/_index";
 
 
 @import 'bootstrap/scss/bootstrap.scss';
