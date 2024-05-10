@@ -1,7 +1,8 @@
 <template>
   <div id="MobileNarbarModal" ref="MobileNarbarModal" class="modal fade text-center animate__animated animate__bounceIn" tabindex="-1" aria-labelledby="MobileNarbarModalLabel"
-         aria-hidden="true" data-backdrop="true">
-      <div class="modal-fullscreen bg-primary">
+         aria-hidden="true">
+         <!-- data-backdrop="true" data-bs-dismiss="modal" -->
+      <div class="modal-fullscreen modal-dialog bg-primary">
         <div class="container">
           <ul class="w-100 h-100 list-unstyled d-flex flex-column justify-content-center align-items-center text-light">
             <li class="nav-item mt-3">
@@ -45,7 +46,7 @@
             </li>
             <li class="nav-item py-3 w-100 border-2 border-bottom border-light">
               <button class="nav-link fs-4 mx-auto" @click="this.hide_Modal()">關閉
-                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
                   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                   <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
                 </svg>
@@ -68,6 +69,7 @@ export default {
   },
   mounted () {
     this.MobileNarbarModal = new Modal(this.$refs.MobileNarbarModal, {
+      backdrop: 'static',
       keyboard: false
     })
   },
