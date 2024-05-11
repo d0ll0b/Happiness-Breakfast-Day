@@ -178,6 +178,7 @@ import FairyLoading from '@/components/FairyLoading.vue'
 import AlertMessages from '@/components/AlertMessages.vue'
 import { mapActions, mapState } from 'pinia'
 import cartStore from '@/stores/cartStore.js'
+import Swal from 'sweetalert2'
 const { VITE_APP_API_URL: apiUrl, VITE_APP_API_NAME: apiPath } = import.meta.env
 
 export default {
@@ -234,27 +235,56 @@ export default {
     delete_cart (id = null) {
       let api = ''
       let message = ''
-      let result = ''
-      this.isLoading = true
 
       if (id === null) {
-        result = confirm('是否清空購物車？')
         api = `${apiUrl}/api/${apiPath}/carts`
         message = '購物車已清空 ಥ_ಥ'
+
+        Swal.fire({
+          title: '是否清空購物車？',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#A9E2F0',
+          cancelButtonColor: '#d33',
+          confirmButtonText: '是的',
+          cancelButtonText: '考慮一下'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.axios.delete(api).then((res) => {
+              this.get_cart()
+              this.$refs.AlertMessages.show_toast(message)
+              this.$router.push('/home')
+            }).catch((err) => {
+              this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
+            }).finally(() => {
+              this.isLoading = false
+            })
+          }
+        })
       } else {
-        result = confirm('是否刪除品項？')
         api = `${apiUrl}/api/${apiPath}/cart/${id}`
         message = '已從購物車刪除 ಥ_ಥ'
-      }
-      if (result) {
-        this.axios.delete(api).then((res) => {
-          this.get_cart()
-          this.$refs.AlertMessages.show_toast(message)
-          this.$router.push('/home')
-        }).catch((err) => {
-          this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
-        }).finally(() => {
-          this.isLoading = false
+
+        Swal.fire({
+          title: '是否刪除品項？',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#A9E2F0',
+          cancelButtonColor: '#d33',
+          confirmButtonText: '是的',
+          cancelButtonText: '考慮一下'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.axios.delete(api).then((res) => {
+              this.get_cart()
+              this.$refs.AlertMessages.show_toast(message)
+              this.$router.push('/home')
+            }).catch((err) => {
+              this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
+            }).finally(() => {
+              this.isLoading = false
+            })
+          }
         })
       }
     },

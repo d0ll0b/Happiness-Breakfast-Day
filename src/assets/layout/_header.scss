@@ -1,3 +1,11 @@
 header{
     background:linear-gradient(to top left, $primary, $secondary);
 }
+
+.header-item{
+    transition: all 0.3s;
+
+    &:hover{
+        transform: translateY(-1.9px);
+    }
+}
