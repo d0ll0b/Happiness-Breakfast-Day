@@ -25,9 +25,9 @@
         <li class="nav-item mt-4">
             <RouterLink to="/admin/Coupons" class="nav-link h4">優惠卷列表</RouterLink>
         </li>
-        <!-- <li class="nav-item mt-4">
+        <li class="nav-item mt-4">
             <RouterLink to="/admin/posts" class="nav-link h4">貼文列表</RouterLink>
-        </li> -->
+        </li>
         <li class="nav-item mt-4">
             <a href="#" class="nav-link h4" @click.prevent="signout">登出</a>
         </li>
