@@ -1,5 +1,5 @@
 <template>
-    <ul class="nav bg-primary text-white fw-bold px-2 justify-content-between z-3 top-0">
+    <ul class="nav bg-primary text-white fw-bold px-2 justify-content-between sticky-top">
         <div>
             <li class="nav-item ms-0 ms-lg-4">
                 <RouterLink to="/home" class="Logo navbar-brand">
