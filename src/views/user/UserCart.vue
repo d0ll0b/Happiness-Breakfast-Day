@@ -125,12 +125,15 @@
                     </tr>
                 </tfoot>
             </table>
-            <div class="text-end mb-4 d-flex justify-content-between">
+            <div class="text-end mb-3 d-flex justify-content-between">
                 <div>
-                    <button class="btn btn-outline-danger" type="button" v-if="carts.length" @click="delete_cart()">清空購物車</button>
+                    <button class="btn btn-outline-danger" type="button" v-if="carts.length" @click="delete_cart()">清空<br>購物車</button>
                 </div>
                 <div class="d-flex">
-                    <p class="me-4">優惠卷input</p>
+                    <div class="input-group me-5">
+                      <input type="text" class="form-control form-control-sm" placeholder="請輸入優惠卷代碼" aria-label="coupons" aria-describedby="button-addon2">
+                      <button class="btn btn-outline-primary" type="button" id="button-addon2">輸入</button>
+                    </div>
                     <button class="btn btn-primary text-white" type="button" :class="{ 'disabled': !carts.length }" v-if="carts.length" @click="this.$router.push('/checkout')">前往結帳</button>
                 </div>
             </div>

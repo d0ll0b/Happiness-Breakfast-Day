@@ -2,7 +2,7 @@
   <div id="MobileNarbarModal" ref="MobileNarbarModal" class="modal fade text-center animate__animated animate__bounceIn" tabindex="-1" aria-labelledby="MobileNarbarModalLabel"
          aria-hidden="true">
          <!-- data-backdrop="true" data-bs-dismiss="modal" -->
-      <div class="modal-fullscreen modal-dialog bg-primary">
+      <div class=" modal-dialog modal-fullscreen bg-primary">
         <div class="container">
           <ul class="w-100 h-100 list-unstyled d-flex flex-column justify-content-center align-items-center text-light">
             <li class="nav-item mt-3">

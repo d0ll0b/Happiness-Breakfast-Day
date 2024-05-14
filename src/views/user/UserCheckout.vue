@@ -124,12 +124,21 @@
                           NT${{ item.product.price }}
                       </td>
                       <td>
-                          <div class="input-group input-group-sm">
-                              <div class="input-group">
-                                <input min="1" type="number" class="form-control" v-model.number="item.qty" :disabled="isLoading" @blur="add_cart(item.product_id,item.qty,item.id)">
-                                <span class="input-group-text" id="basic-addon2">{{ item.product.unit }}</span>
-                              </div>
+                        <div class="input-group input-group-sm">
+                          <div class="input-group">
+                            <button class="px-2 input-group-text" :disabled="isLoading || item.qty === 1" @click="add_cart(item.product_id,item.qty-1,item.id)">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+                                <path fill="$secondary" d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+                              </svg>
+                            </button>
+                            <input min="1" type="number" class="form-control text-center" v-model.number="item.qty" readonly>
+                            <button class="px-2 input-group-text" :disabled="isLoading" @click="add_cart(item.product_id,item.qty+1,item.id)">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                              </svg>
+                            </button>
                           </div>
+                        </div>
                       </td>
                       <td class="text-end">
                           <small class="text-success" v-if="item.coupon">折扣價：</small>
