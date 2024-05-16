@@ -52,26 +52,26 @@
             </div>
             <div class="mb-3">
               <label for="name" class="form-label">訂購人姓名</label><span class="text-danger"> *</span>
-              <v-field id="name" name="name" type="text" class="form-control border-primary"
+              <v-field id="name" name="訂購人姓名" type="text" class="form-control border-primary"
                 :class="{ 'is-invalid': errors['name'] }" placeholder="請輸入姓名" rules="required"
                 v-model="form.user.name"></v-field>
-              <error-message name="name" class="invalid-feedback"></error-message>
+              <error-message name="訂購人姓名" class="invalid-feedback"></error-message>
             </div>
 
             <div class="mb-3">
               <label for="tel" class="form-label">電話</label><span class="text-danger"> *</span>
-              <v-field id="tel" name="tel" type="tel" class="form-control border-primary"
+              <v-field id="tel" name="電話" type="tel" class="form-control border-primary"
                 :class="{ 'is-invalid': errors['tel'] }" placeholder="請輸入電話" rules="required|minMaxLength:8,10"
                 v-model="form.user.tel"></v-field>
-              <error-message name="tel" class="invalid-feedback"></error-message>
+              <error-message name="電話" class="invalid-feedback"></error-message>
             </div>
 
             <div class="mb-3">
               <label for="address" class="form-label">預定時間</label><span class="text-danger"> *</span>
-              <v-field id="address" name="address" type="text" class="form-control border-primary"
+              <v-field id="address" name="預定時間" type="text" class="form-control border-primary"
                 :class="{ 'is-invalid': errors['address'] }" placeholder="請輸入預定時間" rules="required"
                 v-model="form.user.address"></v-field>
-              <error-message name="address" class="invalid-feedback"></error-message>
+              <error-message name="預定時間" class="invalid-feedback"></error-message>
             </div>
 
             <div class="mb-3">

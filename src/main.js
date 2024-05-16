@@ -40,8 +40,8 @@ defineRule('minMaxLength', (value, [min, max]) => {
 
 // Activate the locale
 configure({
-  generateMessage: localize(zhTW),
-  validateOnInput: true // 調整為：輸入文字時，就立即進行驗證
+  generateMessage: localize({ zh_TW: zhTW }), // 載入繁體中文語系
+  validateOnInput: true // 當輸入任何內容直接進行驗證
 })
 
 // 讀取外部的資源
