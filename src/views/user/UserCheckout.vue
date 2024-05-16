@@ -167,7 +167,11 @@
                   </tr>
               </tfoot>
           </table>
-          <div class="text-end mb-4 d-flex justify-content-between d-lg-none">
+          <div class="input-group w-50 ms-auto">
+            <input type="text" class="form-control form-control-sm" placeholder="請輸入優惠卷代碼" aria-label="coupons" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary text-primary border-1 border-primary" type="button" id="button-addon2">輸入</button>
+          </div>
+          <div class="text-end my-3 d-flex justify-content-between d-lg-none">
               <div>
                   <button class="btn btn-outline-danger" type="button" v-if="carts.length" @click="delete_cart()">清空購物車</button>
               </div>
