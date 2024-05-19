@@ -47,7 +47,7 @@
                 關閉
               </button>
               <button type="button" class="btn btn-primary" @click="Update_Coupons(tempCoupons.id)">
-                新增優惠卷
+                {{ title }}優惠卷
               </button>
             </div>
           </div>

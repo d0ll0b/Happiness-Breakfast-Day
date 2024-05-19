@@ -45,15 +45,15 @@
           <v-form ref="form" class="mt-4" v-slot="{ errors }" @submit="onSubmit">
             <div class="mb-3">
               <label for="email" class="form-label">電子郵件</label><span class="text-danger"> *</span>
-              <v-field id="email" name="email" type="email" class="form-control border-primary"
-                :class="{ 'is-invalid': errors['email'] }" placeholder="請輸入 Email" rules="email|required"
+              <v-field id="email" name="電子郵件" type="email" class="form-control border-primary"
+                :class="{ 'is-invalid': errors['電子郵件'] }" placeholder="請輸入 Email" rules="email|required"
                 v-model="form.user.email"></v-field>
-              <error-message name="email" class="invalid-feedback"></error-message>
+              <error-message name="電子郵件" class="invalid-feedback"></error-message>
             </div>
             <div class="mb-3">
               <label for="name" class="form-label">訂購人姓名</label><span class="text-danger"> *</span>
               <v-field id="name" name="訂購人姓名" type="text" class="form-control border-primary"
-                :class="{ 'is-invalid': errors['name'] }" placeholder="請輸入姓名" rules="required"
+                :class="{ 'is-invalid': errors['訂購人姓名'] }" placeholder="請輸入姓名" rules="required"
                 v-model="form.user.name"></v-field>
               <error-message name="訂購人姓名" class="invalid-feedback"></error-message>
             </div>
@@ -61,7 +61,7 @@
             <div class="mb-3">
               <label for="tel" class="form-label">電話</label><span class="text-danger"> *</span>
               <v-field id="tel" name="電話" type="tel" class="form-control border-primary"
-                :class="{ 'is-invalid': errors['tel'] }" placeholder="請輸入電話" rules="required|minMaxLength:8,10"
+                :class="{ 'is-invalid': errors['電話'] }" placeholder="請輸入電話" rules="required|minMaxLength:8,10"
                 v-model="form.user.tel"></v-field>
               <error-message name="電話" class="invalid-feedback"></error-message>
             </div>
@@ -69,7 +69,7 @@
             <div class="mb-3">
               <label for="address" class="form-label">預定時間</label><span class="text-danger"> *</span>
               <v-field id="address" name="預定時間" type="text" class="form-control border-primary"
-                :class="{ 'is-invalid': errors['address'] }" placeholder="請輸入預定時間" rules="required"
+                :class="{ 'is-invalid': errors['預定時間'] }" placeholder="請輸入預定時間" rules="required"
                 v-model="form.user.address"></v-field>
               <error-message name="預定時間" class="invalid-feedback"></error-message>
             </div>
@@ -167,7 +167,7 @@
                   </tr>
               </tfoot>
           </table>
-          <div class="input-group w-50 ms-auto">
+          <div class="input-group w-50 ms-auto mb-3">
             <input type="text" class="form-control form-control-sm" placeholder="請輸入優惠卷代碼" aria-label="coupons" aria-describedby="button-addon2">
             <button class="btn btn-outline-secondary text-primary border-1 border-primary" type="button" id="button-addon2">輸入</button>
           </div>

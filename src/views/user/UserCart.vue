@@ -70,8 +70,8 @@
                             </div>
                         </td>
                         <td>
-                            <small class="text-success" v-if="item.coupon">折扣價：</small>
-                            NT${{ item.product.price }}
+                            <!-- <small class="text-success" v-if="item.coupon">折扣價：</small> -->
+                            NT${{ item.product.origin_price }}
                         </td>
                         <td>
                             <div class="input-group input-group-sm">
@@ -116,12 +116,12 @@
                 </tbody>
                 <tfoot class="table-primary">
                     <tr>
-                      <td colspan="4" class="text-end">總計</td>
-                      <td colspan="3" class="text-center">NT$ {{ this.total }}</td>
+                      <td colspan="4" class="text-end h6">總計</td>
+                      <td colspan="3" class="text-center h5">NT$ {{ this.total }}</td>
                     </tr>
                     <tr v-if="this.total !== this.finalTotal && this.finalTotal">
-                      <td colspan="4" class="text-end text-success">折扣價</td>
-                      <td colspan="3" class="text-center text-success">NT${{ this.finalTotal }}</td>
+                      <td colspan="4" class="text-end text-success h6">折扣價</td>
+                      <td colspan="3" class="text-center text-success h5">NT${{ this.finalTotal }}</td>
                     </tr>
                 </tfoot>
             </table>
@@ -131,8 +131,8 @@
                 </div>
                 <div class="d-flex">
                     <div class="input-group me-5">
-                      <input type="text" class="form-control form-control-sm" placeholder="請輸入優惠卷代碼" aria-label="coupons" aria-describedby="button-addon2">
-                      <button class="btn btn-outline-primary" type="button" id="button-addon2">輸入</button>
+                      <input type="text" class="form-control form-control" placeholder="請輸入優惠卷代碼" aria-label="coupons" aria-describedby="button-addon2" v-model="code">
+                      <button class="btn btn-outline-primary" type="button" id="button-addon2" @click="use_coupon()">輸入</button>
                     </div>
                     <button class="btn btn-primary text-white" type="button" :class="{ 'disabled': !carts.length }" v-if="carts.length" @click="this.$router.push('/checkout')">前往結帳</button>
                 </div>
@@ -215,7 +215,8 @@ export default {
         },
         message: ''
       },
-      products: {}
+      products: {},
+      code: ''
     }
   },
   components: {
@@ -234,7 +235,7 @@ export default {
     add_cart (id, qty = 1, flg) {
       let api = ''
       let http = ''
-      const message = `加入購物車成功，新增${qty}筆商品~~`
+      const message = '更新購物車成功~~~'
       this.isLoading = true
 
       if (flg === 'new') {
@@ -336,6 +337,23 @@ export default {
       this.axios.get(api).then((res) => {
         const { products } = res.data
         this.products = products
+      }).catch((err) => {
+        alert(err)
+      }).finally(() => {
+        this.isLoading = false
+      })
+    },
+    use_coupon () {
+      this.isLoading = true
+      const api = `${apiUrl}/api/${apiPath}/coupon`
+
+      const data = {
+        code: this.code
+      }
+
+      this.axios.post(api, { data }).then((res) => {
+        this.$refs.AlertMessages.show_toast(`已套用優惠卷 "${this.code}" ，謝謝~~`)
+        this.code = ''
       }).catch((err) => {
         alert(err)
       }).finally(() => {

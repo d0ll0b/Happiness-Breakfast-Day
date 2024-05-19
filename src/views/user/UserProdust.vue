@@ -1,5 +1,5 @@
 <template>
-    <h1>產品頁面</h1>
+    <!-- <h1>產品頁面</h1> -->
     <VueLoading :active="isLoading">
       <fairy-loading></fairy-loading>
     </VueLoading>
@@ -9,7 +9,7 @@
     <div class="container">
       <div class="bg-primary text-white rounded-pill py-1 mb-1">
           <div class="h5 mb-0">
-              <span>{{ product.title }}</span>
+              <span>link預留地</span>
           </div>
       </div>
       <div class="mb-1">
@@ -53,7 +53,10 @@
               </div>
           <!-- d-flex flex-column justify-content-between -->
           <div class="col-sm-6 text-start">
-              <span class="badge bg-primary rounded-pill">{{ product.category }}</span>
+              <div class="d-flex flex-column">
+                <p class="badge bg-primary rounded-pill">{{ product.category }}</p>
+                <h2 class="text-primary">{{ product.title }}</h2>
+              </div>
               <p class="h5">描述：</p><br><p>{{ product.description }}</p><br>
               <!-- <p>商品內容：<br>{{ product.content }}</p> -->
               <del class="h6 text-danger">原價 NT${{ product.origin_price }} 元</del>

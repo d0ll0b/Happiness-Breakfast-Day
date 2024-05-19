@@ -45,7 +45,7 @@ configure({
 })
 
 // 讀取外部的資源
-setLocale('zhTW')
+setLocale('zh_TW')
 
 const app = createApp(App)
 

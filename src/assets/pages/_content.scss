@@ -31,6 +31,16 @@
     top: 25% !important;
 }
 
+.order-process-svg {
+    width: 150px;
+    height: 150px;
+
+    @media (max-width: 768px) {
+        width: 80px;   
+        height: 80px;
+    }
+}
+
 @media (max-width: 768px) {
     .description-text {
         font-size: 20px;
