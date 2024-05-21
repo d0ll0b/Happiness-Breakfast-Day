@@ -1,5 +1,6 @@
 <template>
-    <div class="bg-black w-100 position-relative bottom-0">
+     <!--  -->
+    <div class="bg-black position-relative bottom-0 w-100">
         <div class="container">
             <div class="d-flex pt-1">
                 <ul class="text-white" data-aos="fade-left">
@@ -25,7 +26,7 @@
                 </ul>
                 <ul class="text-start d-flex flex-column justify-content-between">
                     <div></div>
-                    <div class="d-flex" data-aos="fade-left">
+                    <div class="d-flex" data-aos="fade-right">
                         <li class="nav-item">
                             <!-- FB -->
                             <a href="https://www.facebook.com/?locale=zh_TW">

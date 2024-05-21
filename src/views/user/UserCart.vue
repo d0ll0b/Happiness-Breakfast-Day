@@ -65,9 +65,9 @@
                             </router-link>
                             <!-- <img class="me-3 product_img" :src="item.product.imageUrl" :alt="item.product.title"> -->
                             {{ item.product.title }}
-                            <div class="text-success" v-if="item.coupon">
+                            <!-- <div class="text-success" v-if="item.coupon">
                                 已套用優惠券
-                            </div>
+                            </div> -->
                         </td>
                         <td>
                             <del class="text-danger">NT${{ item.product.origin_price }}</del>

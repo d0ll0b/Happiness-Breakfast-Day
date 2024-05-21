@@ -115,13 +115,13 @@
                       <td class="text-start">
                           <img class="me-3 product_img" :src="item.product.imageUrl" :alt="item.product.title">
                           {{ item.product.title }}
-                          <div class="text-success" v-if="item.coupon">
+                          <!-- <div class="text-success" v-if="item.coupon">
                               已套用優惠券
-                          </div>
+                          </div> -->
                       </td>
                       <td>
-                          <small class="text-success" v-if="item.coupon">折扣價：</small>
-                          NT${{ item.product.price }}
+                          <!-- <small class="text-success" v-if="item.coupon">折扣價：</small> -->
+                          <del class="text-danger">NT${{ item.product.origin_price }}</del>
                       </td>
                       <td>
                         <div class="input-group input-group-sm">
@@ -141,7 +141,7 @@
                         </div>
                       </td>
                       <td class="text-end">
-                          <small class="text-success" v-if="item.coupon">折扣價：</small>
+                          <small class="text-success">折扣價：</small>
                           NT${{ item.product.price }}
                       </td>
                       <td>
