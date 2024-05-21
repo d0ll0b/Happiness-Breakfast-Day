@@ -70,8 +70,7 @@
                             </div>
                         </td>
                         <td>
-                            <!-- <small class="text-success" v-if="item.coupon">折扣價：</small> -->
-                            NT${{ item.product.origin_price }}
+                            <del class="text-danger">NT${{ item.product.origin_price }}</del>
                         </td>
                         <td>
                             <div class="input-group input-group-sm">
@@ -91,7 +90,7 @@
                             </div>
                         </td>
                         <td class="text-end">
-                            <small class="text-success" v-if="item.coupon">折扣價：</small>
+                            <small class="text-success">折扣價：</small>
                             NT${{ item.product.price }}
                         </td>
                         <td>
@@ -354,6 +353,7 @@ export default {
       this.axios.post(api, { data }).then((res) => {
         this.$refs.AlertMessages.show_toast(`已套用優惠卷 "${this.code}" ，謝謝~~`)
         this.code = ''
+        this.get_cart()
       }).catch((err) => {
         alert(err)
       }).finally(() => {
