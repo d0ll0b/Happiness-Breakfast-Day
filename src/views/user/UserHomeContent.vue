@@ -39,7 +39,7 @@
 
   <div class="container-fuild bg-primary">
     <!-- 每日特餐 -->
-        <h2 class="text-white pt-2">開始點餐</h2>
+        <h2 class="text-white pt-2">美味餐點</h2>
         <v-swiper
             :breakpoints="{
               1: {

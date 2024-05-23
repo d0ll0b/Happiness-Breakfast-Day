@@ -68,9 +68,14 @@
 
             <div class="mb-3">
               <label for="address" class="form-label">預定時間</label><span class="text-danger"> *</span>
-              <v-field id="address" name="預定時間" type="text" class="form-control border-primary"
-                :class="{ 'is-invalid': errors['預定時間'] }" placeholder="請輸入預定時間" rules="required"
-                v-model="form.user.address"></v-field>
+              <div class="d-flex">
+                <v-field id="address" name="預定時間" type="date" class="form-control border-primary w-50"
+                  :class="{ 'is-invalid': errors['預定時間'] }" placeholder="請輸入預定日期" rules="required"
+                  v-model="form.user.address"></v-field>
+                <v-field id="address" name="預定時間" type="time" class="form-control border-primary w-50"
+                  :class="{ 'is-invalid': errors['預定時間'] }" placeholder="請輸入預定時間" rules="required"
+                  v-model="form.user.address"></v-field>
+              </div>
               <error-message name="預定時間" class="invalid-feedback"></error-message>
             </div>
 
@@ -141,7 +146,7 @@
                         </div>
                       </td>
                       <td class="text-end">
-                          <small class="text-success">折扣價：</small>
+                          <small class="text-success">限時折扣：</small><br>
                           NT${{ item.product.price }}
                       </td>
                       <td>

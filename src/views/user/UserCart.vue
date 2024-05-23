@@ -90,7 +90,7 @@
                             </div>
                         </td>
                         <td class="text-end">
-                            <small class="text-success">折扣價：</small>
+                            <small class="text-success">限時折扣：</small>
                             NT${{ item.product.price }}
                         </td>
                         <td>
