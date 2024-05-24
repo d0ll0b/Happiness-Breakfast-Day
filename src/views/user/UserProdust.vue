@@ -7,7 +7,7 @@
     <alert-messages ref="AlertMessages"></alert-messages>
     <!-- 訊息 -->
     <div class="container">
-      <div class="bg-primary text-white rounded-pill py-1 mb-1">
+      <div class="bg-primary text-white rounded-pill py-1 mb-1 d-none">
           <div class="h5 mb-0">
               <span>link預留地</span>
           </div>
@@ -53,12 +53,12 @@
               </div>
           <!-- d-flex flex-column justify-content-between -->
           <div class="col-sm-6 text-start">
-              <div class="d-flex flex-column">
-                <p class="badge bg-primary rounded-pill">{{ product.category }}</p>
+              <div class="d-flex">
+                <p class="badge bg-secondary rounded-pill h-50 me-2 my-auto">{{ product.category }}</p>
                 <h2 class="text-primary">{{ product.title }}</h2>
               </div>
-              <p class="h5">描述：</p><br><p>{{ product.description }}</p><br>
-              <!-- <p>商品內容：<br>{{ product.content }}</p> -->
+              <p>{{ product.description }}</p>
+              <p class="mt-2">熱量： {{ product.content }}</p><br>
               <del class="h6 text-danger">原價 NT${{ product.origin_price }} 元</del>
               <div class="h5">現在只要 NT${{ product.price }} 元</div>
                   <div>
