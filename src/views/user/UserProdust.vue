@@ -72,6 +72,62 @@
           </div>
       </div>
     </div>
+    <div class="container-fuild">
+      <!-- 類似餐點 -->
+      <div class="bg-primary py-4">
+        <div class="container">
+          <h2 class="text-center text-light mb-0">類似餐點</h2>
+          <v-swiper
+              :breakpoints="{
+                1: {
+                  slidesPerView: 1
+                },
+                768: {
+                  slidesPerView: 2
+                },
+                996: {
+                  slidesPerView: 3
+                }
+              }"
+              :spaceBetween="30"
+              :pagination="{
+                clickable: true,
+              }"
+              :autoplay="{
+                delay: 2500,
+                disableOnInteraction: false
+              }"
+              :modules="modules"
+              class="mySwiper py-2 px-4"
+          >
+
+            <v-swiper-slide v-for="item in category_product" :key="item.id">
+                <div class="col pb-4">
+                    <div class="card h-100">
+                        <router-link :to="`/product/${item.id}`" class="img-router" data-aos="flip-left">
+                          <img :src="item.imageUrl" class="card-img-top" :alt="item.title">
+                        </router-link>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.title }}</h5>
+                            <div class="card-text mt-2">
+                                <div class="h5" v-if="item.origin_price === item.price">NT${{ item.price }}</div>
+                                <div v-else>
+                                    <span class="h5 me-1">NT${{ item.price }}</span>
+                                    <del class="h6 text-danger">NT${{ item.origin_price }}</del>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-secondary mt-2 text-light" type="button" @click="add_cart(item.id,1,'new')">加入購物車</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </v-swiper-slide>
+          </v-swiper>
+        </div>
+      </div>
+      <!-- 類似餐點 -->
+    </div>
 </template>
 
 <script>
@@ -88,6 +144,7 @@ export default {
   data () {
     return {
       product: {},
+      category_product: {},
       img: {},
       qty: 1,
       isLoading: false
@@ -118,8 +175,22 @@ export default {
       this.axios.get(api).then((res) => {
         const { product } = res.data
         this.product = product
+        this.get_products(this.product.category, this.product.id)
       }).catch((err) => {
         this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
+      }).finally(() => {
+        this.isLoading = false
+      })
+    },
+    // 取得所有商品
+    get_products (category, id) {
+      this.isLoading = true
+      const api = `${apiUrl}/api/${apiPath}/products?category=${category}`
+      this.axios.get(api).then((res) => {
+        const { products } = res.data
+        this.category_product = products.filter((product) => product.id !== id)
+      }).catch((err) => {
+        this.$refs.AlertMessages.show_alert(err?.response?.data?.message, 1300, 'error')
       }).finally(() => {
         this.isLoading = false
       })
