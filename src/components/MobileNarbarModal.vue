@@ -69,7 +69,7 @@ export default {
   },
   mounted () {
     this.MobileNarbarModal = new Modal(this.$refs.MobileNarbarModal, {
-      backdrop: 'static',
+      // backdrop: 'static',
       keyboard: false
     })
   },

@@ -13,10 +13,10 @@ export default defineStore('cartStore', {
       const api = `${apiUrl}/api/${apiPath}/cart`
 
       axios.get(api).then((res) => {
-        const { carts, total, finalTotal } = res.data.data
+        const { carts, total } = res.data.data
         this.carts = carts
         this.total = total
-        this.finalTotal = finalTotal
+        this.finalTotal = res.data.data.final_total
       }).catch((err) => {
         this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
       })

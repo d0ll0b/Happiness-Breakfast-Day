@@ -5,6 +5,16 @@
     <!-- 訊息 -->
     <alert-messages ref="AlertMessages"></alert-messages>
     <!-- 訊息 -->
+    <div class="container-fuild">
+      <!-- description -->
+      <div class="w-100 description text-white d-flex flex-column justify-content-between align-items-center py-6">
+        <div class="description-blur"></div>
+        <div class="input-group w-25">
+          <input type="text" class="form-control" placeholder="請輸入訂單代碼" aria-label="orders" aria-describedby="button-addon2" v-model="ordercode">
+          <button class="btn btn-secondary text-light" type="button" id="button-addon2" @click="select_order()">搜尋</button>
+        </div>
+      </div>
+    </div>
     <div class="container">
         <div class="d-flex row">
             <!-- 購物車列表 -->
@@ -65,9 +75,9 @@
                             </router-link>
                             <!-- <img class="me-3 product_img" :src="item.product.imageUrl" :alt="item.product.title"> -->
                             {{ item.product.title }}
-                            <div class="text-success" v-if="item.coupon">
+                            <!-- <div class="text-success" v-if="item.coupon">
                                 已套用優惠券
-                            </div>
+                            </div> -->
                         </td>
                         <td>
                             <del class="text-danger">NT${{ item.product.origin_price }}</del>
@@ -90,8 +100,8 @@
                             </div>
                         </td>
                         <td class="text-end">
-                            <small class="text-success" v-if="item.coupon">折扣價：</small>
-                            NT${{ item.final_total }}
+                            <small class="text-success">限時折扣：</small>
+                            NT${{ item.product.price }}
                         </td>
                         <td>
                             <button type="button" class="btn btn-outline-danger btn-sm" @click="delete_cart(item.id)">
@@ -115,12 +125,12 @@
                 </tbody>
                 <tfoot class="table-primary">
                     <tr>
-                      <td colspan="4" class="text-end h6" :class="{ 'h6 text-primary': this.total !== this.finalTotal && this.finalTotal }">總計</td>
-                      <td colspan="3" class="text-center h5" :class="{ 'h6 text-primary': this.total !== this.finalTotal && this.finalTotal }">NT$ {{ this.total }}</td>
+                      <td colspan="4" class="text-end h6">總計</td>
+                      <td colspan="3" class="text-center h5">NT$ {{ this.total }}</td>
                     </tr>
                     <tr v-if="this.total !== this.finalTotal && this.finalTotal">
-                      <td colspan="4" class="text-end h6">折扣價</td>
-                      <td colspan="3" class="text-center h5">NT$ {{ this.finalTotal }}</td>
+                      <td colspan="4" class="text-end text-success h6">折扣價</td>
+                      <td colspan="3" class="text-center text-success h5">NT${{ this.finalTotal }}</td>
                     </tr>
                 </tfoot>
             </table>
@@ -215,7 +225,7 @@ export default {
         message: ''
       },
       products: {},
-      code: ''
+      ordercode: ''
     }
   },
   components: {
@@ -342,7 +352,7 @@ export default {
         this.isLoading = false
       })
     },
-    use_coupon () {
+    select_order () {
       this.isLoading = true
       const api = `${apiUrl}/api/${apiPath}/coupon`
 
