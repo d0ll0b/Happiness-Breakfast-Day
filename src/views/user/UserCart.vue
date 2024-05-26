@@ -115,8 +115,8 @@
                 </tbody>
                 <tfoot class="table-primary">
                     <tr>
-                      <td colspan="4" class="text-end h6" :class="{ 'h6 text-primary': this.total !== this.finalTotal && this.finalTotal }">總計</td>
-                      <td colspan="3" class="text-center h5" :class="{ 'h6 text-primary': this.total !== this.finalTotal && this.finalTotal }">NT$ {{ this.total }}</td>
+                      <td colspan="4" class="text-end h6" :class="{ 'h6 text-danger': this.total !== this.finalTotal && this.finalTotal }">總計</td>
+                      <td colspan="3" class="text-center h5" ><span :class="{ 'h6 text-danger deleted-text': this.total !== this.finalTotal && this.finalTotal }">NT$ {{ this.total }}</span></td>
                     </tr>
                     <tr v-if="this.total !== this.finalTotal && this.finalTotal">
                       <td colspan="4" class="text-end h6">折扣價</td>

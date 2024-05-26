@@ -146,8 +146,8 @@
                         </div>
                       </td>
                       <td class="text-end">
-                          <small class="text-success">限時折扣：</small><br>
-                          NT${{ item.product.price }}
+                          <small class="text-success" v-if="item.coupon">折扣價</small><br>
+                          NT${{ item.final_total }}
                       </td>
                       <td>
                           <button type="button" class="btn btn-outline-danger btn-sm" @click="delete_cart(item.id)">
@@ -163,18 +163,18 @@
               </tbody>
               <tfoot class="table-primary">
                   <tr>
-                    <td colspan="4" class="text-end">總計</td>
-                    <td colspan="3" class="text-center">NT$ {{ this.total }}</td>
+                    <td colspan="4" class="text-end h6" :class="{ 'h6 text-danger': this.total !== this.finalTotal && this.finalTotal }">總計</td>
+                    <td colspan="3" class="text-center h5"><span :class="{ 'h6 text-danger deleted-text': this.total !== this.finalTotal && this.finalTotal }">NT$ {{ this.total }}</span></td>
                   </tr>
                   <tr v-if="this.total !== this.finalTotal && this.finalTotal">
-                    <td colspan="4" class="text-end text-success">折扣價</td>
-                    <td colspan="3" class="text-center text-success">NT${{ this.finalTotal }}</td>
+                    <td colspan="4" class="text-end h6">折扣價</td>
+                    <td colspan="3" class="text-center h5">NT$ {{ this.finalTotal }}</td>
                   </tr>
               </tfoot>
           </table>
           <div class="input-group w-50 ms-auto mb-3">
-            <input type="text" class="form-control form-control-sm" placeholder="請輸入優惠卷代碼" aria-label="coupons" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary text-primary border-1 border-primary" type="button" id="button-addon2">輸入</button>
+            <input type="text" class="form-control form-control-sm" placeholder="請輸入優惠卷代碼" aria-label="coupons" aria-describedby="button-addon2" v-model="code">
+            <button class="btn btn-outline-secondary text-primary border-1 border-primary" type="button" id="button-addon2" @click="use_coupon()">輸入</button>
           </div>
           <div class="text-end my-3 d-flex justify-content-between d-lg-none">
               <div>
@@ -211,7 +211,8 @@ export default {
           address: ''
         },
         message: ''
-      }
+      },
+      code: ''
     }
   },
   components: {
@@ -318,6 +319,24 @@ export default {
         this.$router.push('/home')
       }).catch((err) => {
         this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
+      }).finally(() => {
+        this.isLoading = false
+      })
+    },
+    use_coupon () {
+      this.isLoading = true
+      const api = `${apiUrl}/api/${apiPath}/coupon`
+
+      const data = {
+        code: this.code
+      }
+
+      this.axios.post(api, { data }).then((res) => {
+        this.$refs.AlertMessages.show_toast(`已套用優惠卷 "${this.code}" ，謝謝~~`)
+        this.code = ''
+        this.get_cart()
+      }).catch((err) => {
+        alert(err)
       }).finally(() => {
         this.isLoading = false
       })

@@ -10,7 +10,23 @@
     width: 200px;
     height: 200px;
     object-fit: cover;
-}    
+}   
+
+.deleted-text {
+    position: relative;
+    color: gray;
+}
+
+.deleted-text::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background-color: red; /* 设置删除线颜色 */
+    transform: translateY(-50%);
+}
 
 // .cart-start::after{
 //     content: "";
