@@ -5,8 +5,12 @@
   </VueLoading>
   <div class="container">
     <div class="mt-4">
+      <!-- 新增文章Modal -->
+      <articles-modal ref="ArticlesModal" @get_data="getArticles"></articles-modal>
+      <!-- 新增文章Modal -->
+
       <!-- 刪除Modal -->
-      <!-- <del-modal ref="DelModal" :temp="articles" @delproduct="Delete_product"></del-modal> -->
+      <del-modal ref="DelModal" :temp="articles" @delproduct="Delete_Article"></del-modal>
       <!-- 刪除Modal -->
 
       <!-- 訊息 -->
@@ -33,17 +37,19 @@
               <td>{{ item.title }}</td>
               <td>{{ item.author }}</td>
               <td>{{ item.description }}</td>
-              <td>{{ item.create_at }}</td>
-              <td>{{ item.isPublic }}</td>
+              <td>{{ new Date(item.create_at*1000).toLocaleDateString() }}</td>
+              <td>
+                <span class="text-success" v-if="item.isPublic">啟用</span>
+                <span v-else>未啟用</span>
+              </td>
               <td>
                 <div class="btn-group btn-group-sm">
                     <!-- @click="this.$refs.CouponsModal.show_Modal('edit', item)" -->
-                    <button type="button" class="btn btn-outline-primary">
+                    <button type="button" class="btn btn-outline-primary" @click="this.$refs.ArticlesModal.show_Modal('edit', item)">
                         <i class="fas fa-spinner fa-pulse" v-if="isLoading"></i>
                         修改
                     </button>
-                    <!-- @click="this.$refs.DelModal.show_Modal('coupon', item)" -->
-                    <button type="button" class="btn btn-outline-danger">
+                    <button type="button" class="btn btn-outline-danger" @click="this.$refs.DelModal.show_Modal('coupon', item)">
                         <i class="fas fa-spinner fa-pulse" v-if="isLoading"></i>
                         刪除
                     </button>
@@ -62,7 +68,8 @@
 </template>
 
 <script>
-// import DelModal from '@/components/DelModal.vue'
+import DelModal from '@/components/DelModal.vue'
+import ArticlesModal from '@/components/ArticlesModal.vue'
 import AlertMessages from '@/components/AlertMessages.vue'
 import PaginationBtn from '@/components/PaginationBtn.vue'
 import FairyLoading from '@/components/FairyLoading.vue'
@@ -78,7 +85,8 @@ export default {
     }
   },
   components: {
-    // DelModal,
+    DelModal,
+    ArticlesModal,
     AlertMessages,
     PaginationBtn,
     FairyLoading
@@ -101,9 +109,22 @@ export default {
           this.isLoading = false
         })
     },
-    mounted () {
-      this.getArticles()
+    Delete_Article (id) {
+      this.isLoading = true
+      const api = `${apiUrl}/api/${apiPath}/admin/article/${id}`
+      this.axios.delete(api).then((res) => {
+        this.$refs.AlertMessages.show_toast('刪除貼文完成!!!')
+        this.getArticles()
+        this.$refs.DelModal.hide_Modal()
+      }).catch((err) => {
+        this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
+      }).finally(() => {
+        this.isLoading = false
+      })
     }
+  },
+  mounted () {
+    this.getArticles()
   }
 }
 </script>
