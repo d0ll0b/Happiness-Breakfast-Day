@@ -59,14 +59,16 @@
                 <tbody>
                     <template v-if="carts.length">
                       <tr v-for="item in carts" :key="item.id">
-                        <td class="text-start">
+                        <td class="text-start d-flex">
                             <router-link :to="`/product/${item.product.id}`" class="img-router me-3">
                               <img :src="item.product.imageUrl" class="product_img" :alt="item.product.title">
                             </router-link>
                             <!-- <img class="me-3 product_img" :src="item.product.imageUrl" :alt="item.product.title"> -->
-                            {{ item.product.title }}
-                            <div class="text-success" v-if="item.coupon">
-                                已套用優惠券
+                            <div class="my-auto">
+                              <span class="fw-blod">{{ item.product.title }}</span>
+                              <div class="text-success" v-if="item.coupon">
+                                  已套用優惠券
+                              </div>
                             </div>
                         </td>
                         <td>
@@ -91,7 +93,7 @@
                         </td>
                         <td class="text-end">
                             <small class="text-success" v-if="item.coupon">折扣價：</small>
-                            NT${{ item.final_total }}
+                            NT${{ Math.round(item.final_total) }}
                         </td>
                         <td>
                             <button type="button" class="btn btn-outline-danger btn-sm" @click="delete_cart(item.id)">
@@ -120,7 +122,7 @@
                     </tr>
                     <tr v-if="this.total !== this.finalTotal && this.finalTotal">
                       <td colspan="4" class="text-end h6">折扣價</td>
-                      <td colspan="3" class="text-center h5">NT$ {{ this.finalTotal }}</td>
+                      <td colspan="3" class="text-center h5">NT$ {{ Math.round(this.finalTotal) }}</td>
                     </tr>
                 </tfoot>
             </table>

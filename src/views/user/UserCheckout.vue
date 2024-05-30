@@ -147,7 +147,7 @@
                       </td>
                       <td class="text-end">
                           <small class="text-success" v-if="item.coupon">折扣價</small><br>
-                          NT${{ item.final_total }}
+                          NT${{ Math.round(item.final_total) }}
                       </td>
                       <td>
                           <button type="button" class="btn btn-outline-danger btn-sm" @click="delete_cart(item.id)">
@@ -168,7 +168,7 @@
                   </tr>
                   <tr v-if="this.total !== this.finalTotal && this.finalTotal">
                     <td colspan="4" class="text-end h6">折扣價</td>
-                    <td colspan="3" class="text-center h5">NT$ {{ this.finalTotal }}</td>
+                    <td colspan="3" class="text-center h5">NT$ {{ Math.round(this.finalTotal) }}</td>
                   </tr>
               </tfoot>
           </table>

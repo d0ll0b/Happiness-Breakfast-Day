@@ -76,7 +76,7 @@
       <!-- 類似餐點 -->
       <div class="bg-primary py-4">
         <div class="container">
-          <h2 class="text-center text-light mb-0">類似餐點</h2>
+          <h2 class="text-center text-light mb-0">其他推薦</h2>
           <v-swiper
               :breakpoints="{
                 1: {
