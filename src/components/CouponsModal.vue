@@ -20,18 +20,18 @@
               </div>
 
               <div class="mb-3">
-                <label for="title" class="form-label">優惠碼</label>
+                <label for="code" class="form-label">優惠碼</label>
                 <input id="code" type="text" class="form-control" placeholder="請輸入優惠碼" v-model="tempCoupons.code">
               </div>
 
               <div class="mb-3">
-                <label for="title" class="form-label">到期日</label>
+                <label for="due_date" class="form-label">到期日</label>
                 <input id="due_date" type="date" class="form-control" placeholder="請輸入到期日" v-model="tempCoupons.due_date">
               </div>
 
               <div class="mb-3">
-                <label for="title" class="form-label">折扣百分比</label>
-                <input id="code" type="number" class="form-control" placeholder="請輸入折扣百分比" v-model.number="tempCoupons.percent">
+                <label for="percent" class="form-label">折扣百分比</label>
+                <input id="percent" type="number" class="form-control" placeholder="請輸入折扣百分比" v-model.number="tempCoupons.percent">
               </div>
 
               <div class="mb-3">

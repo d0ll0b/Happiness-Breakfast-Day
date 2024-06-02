@@ -100,6 +100,7 @@ export default {
           const { articles, pagination } = res.data
           this.articles = articles
           this.pagination = pagination
+          console.log(articles)
         })
         .catch((err) => {
           this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
