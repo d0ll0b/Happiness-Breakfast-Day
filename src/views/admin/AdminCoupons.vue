@@ -65,7 +65,7 @@
         </div>
 
         <!-- Pagination -->
-        <pagination-btn :pagination="pagination" @change_page="getCoupons"></pagination-btn>
+        <pagination-btn :pagination="pagination" @changePage="getCoupons"></pagination-btn>
         <!-- Pagination -->
     </div>
 </template>

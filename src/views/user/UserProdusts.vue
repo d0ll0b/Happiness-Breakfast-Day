@@ -71,12 +71,17 @@
             </table> -->
           </ul>
         </div>
+
+        <!-- Pagination -->
+        <pagination-btn class="d-flex justify-content-center" :pagination="pagination" @changePage="get_products"></pagination-btn>
+        <!-- Pagination -->
     </div>
 </template>
 
 <script>
 import FairyLoading from '@/components/FairyLoading.vue'
 import AlertMessages from '@/components/AlertMessages.vue'
+import PaginationBtn from '@/components/PaginationBtn.vue'
 import { mapActions } from 'pinia'
 import cartStore from '@/stores/cartStore.js'
 const { VITE_APP_API_URL: apiUrl, VITE_APP_API_NAME: apiPath } = import.meta.env
@@ -92,7 +97,8 @@ export default {
   },
   components: {
     FairyLoading,
-    AlertMessages
+    AlertMessages,
+    PaginationBtn
   },
   methods: {
     // 取得所有商品

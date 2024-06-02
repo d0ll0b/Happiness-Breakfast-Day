@@ -59,7 +59,7 @@
                 <tbody>
                     <template v-if="carts.length">
                       <tr v-for="item in carts" :key="item.id">
-                        <td class="text-start d-flex">
+                        <td class="text-start d-flex d-none">
                             <router-link :to="`/product/${item.product.id}`" class="img-router me-3">
                               <img :src="item.product.imageUrl" class="product_img" :alt="item.product.title">
                             </router-link>
@@ -71,10 +71,10 @@
                               </div>
                             </div>
                         </td>
-                        <td>
+                        <td class="d-none">
                             <del class="text-danger">NT${{ item.product.origin_price }}</del>
                         </td>
-                        <td>
+                        <td class="d-none">
                             <div class="input-group input-group-sm">
                                 <div class="input-group">
                                   <button class="px-2 input-group-text" :disabled="isLoading || item.qty === 1" @click="add_cart(item.product_id,item.qty-1,item.id)">
@@ -91,11 +91,11 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="text-end">
+                        <td class="text-end d-none">
                             <small class="text-success" v-if="item.coupon">折扣價：</small>
                             NT${{ Math.round(item.final_total) }}
                         </td>
-                        <td>
+                        <td class="d-none">
                             <button type="button" class="btn btn-outline-danger btn-sm" @click="delete_cart(item.id)">
                                 <i class="fas fa-spinner fa-pulse" v-if="isLoading"></i>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -103,6 +103,27 @@
                                   <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
                                 </svg>
                             </button>
+                        </td>
+                        <td colspan="5">
+                          <div class="d-flex justify-content-between">
+                            <router-link :to="`/product/${item.product.id}`" class="img-router me-3">
+                              <img :src="item.product.imageUrl" class="product_img" :alt="item.product.title">
+                            </router-link>
+                            <div class="my-auto">
+                              <span class="fw-blod">{{ item.product.title }}</span>
+                              <div class="text-success" v-if="item.coupon">
+                                  已套用優惠券
+                              </div>
+                            </div>
+                            <del class="text-danger">NT${{ item.product.origin_price }}</del>
+                            <button type="button" class="btn btn-outline-danger btn-sm" @click="delete_cart(item.id)">
+                                <i class="fas fa-spinner fa-pulse" v-if="isLoading"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                  <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                </svg>
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     </template>

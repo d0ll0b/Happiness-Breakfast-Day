@@ -62,7 +62,7 @@
     </div>
 
     <!-- Pagination -->
-    <pagination-btn :pagination="pagination" @change_page="getArticles"></pagination-btn>
+    <pagination-btn :pagination="pagination" @changePage="getArticles"></pagination-btn>
     <!-- Pagination -->
   </div>
 </template>
@@ -100,7 +100,6 @@ export default {
           const { articles, pagination } = res.data
           this.articles = articles
           this.pagination = pagination
-          console.log(this.articles)
         })
         .catch((err) => {
           this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')

@@ -71,7 +71,7 @@
       </div>
 
       <!-- Pagination -->
-      <pagination-btn :pagination="pagination" @change_page="getOrders"></pagination-btn>
+      <pagination-btn :pagination="pagination" @changePage="getOrders"></pagination-btn>
       <!-- Pagination -->
   </div>
 </template>
