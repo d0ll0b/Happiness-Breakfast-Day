@@ -115,14 +115,33 @@
                                   已套用優惠券
                               </div>
                             </div>
-                            <del class="text-danger">NT${{ item.product.origin_price }}</del>
-                            <button type="button" class="btn btn-outline-danger btn-sm" @click="delete_cart(item.id)">
+                            <div class="my-auto">
+                              <del class="text-danger">NT${{ item.product.origin_price }}</del>
+                            </div>
+                            <div class="my-auto">
+                              <button type="button" class="btn btn-outline-danger btn-sm" @click="delete_cart(item.id)">
                                 <i class="fas fa-spinner fa-pulse" v-if="isLoading"></i>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
                                   <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
                                 </svg>
-                            </button>
+                              </button>
+                            </div>
+                          </div>
+                          <div class="input-group input-group-sm mt-3">
+                              <div class="input-group">
+                                <button class="px-2 input-group-text" :disabled="isLoading || item.qty === 1" @click="add_cart(item.product_id,item.qty-1,item.id)">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+                                    <path fill="$secondary" d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+                                  </svg>
+                                </button>
+                                <input min="1" type="number" class="form-control text-center" v-model.number="item.qty" readonly>
+                                <button class="px-2 input-group-text" :disabled="isLoading" @click="add_cart(item.product_id,item.qty+1,item.id)">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                                  </svg>
+                                </button>
+                              </div>
                           </div>
                         </td>
                       </tr>
