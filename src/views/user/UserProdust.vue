@@ -72,7 +72,7 @@
           </div>
       </div>
     </div>
-    <div class="container-fuild">
+    <div class="container-fuild" v-if="category_product.length > 2">
       <!-- 類似餐點 -->
       <div class="bg-primary py-4">
         <div class="container">
