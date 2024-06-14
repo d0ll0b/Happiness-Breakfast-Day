@@ -7,6 +7,7 @@ import * as AllRules from '@vee-validate/rules'
 import { localize, setLocale } from '@vee-validate/i18n'
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
 import { Swiper, SwiperSlide } from 'swiper/vue'
+import CKEditor from '@ckeditor/ckeditor5-vue'
 
 import './assets/all.scss'
 
@@ -52,6 +53,7 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 app.use(VueAxios, axios)
+app.use(CKEditor)
 app.component('VueLoading', Loading)
 app.component('VForm', Form)
 app.component('VField', Field)

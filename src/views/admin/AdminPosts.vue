@@ -34,7 +34,7 @@
         <tbody>
           <template v-if="articles">
             <tr v-for="item in articles" :key="item.id">
-              <td>{{ item.title }}</td>
+              <td class="h5 font-weight-bold text-warning">{{ item.title }}</td>
               <td>{{ item.author }}</td>
               <td>{{ item.description }}</td>
               <td>{{ new Date(item.create_at*1000).toLocaleDateString() }}</td>

@@ -67,9 +67,10 @@
                 </div>
                 <div class="mb-3">
                   <label for="content" class="form-label">說明內容</label>
-                  <textarea id="content" type="text" class="form-control"
+                  <!-- <textarea id="content" type="text" class="form-control"
                             placeholder="請輸入說明內容" v-model="tempProduct.content">
-                  </textarea>
+                  </textarea> -->
+                  <ckeditor :editor="editor" v-model="tempProduct.content"></ckeditor>
                 </div>
                 <div class="mb-3">
                   <div class="form-check">
@@ -97,6 +98,7 @@
 <script>
 import AlertMessages from '@/components/AlertMessages.vue'
 import Modal from 'bootstrap/js/dist/modal'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 const { VITE_APP_API_URL: apiUrl, VITE_APP_API_NAME: apiPath } = import.meta.env
 
 export default {
@@ -108,7 +110,8 @@ export default {
       isNew: false,
       title: '',
       ProductsModal: '',
-      isLoading: false
+      isLoading: false,
+      editor: ClassicEditor
     }
   },
   components: {
