@@ -59,7 +59,8 @@
                 <tbody>
                     <template v-if="carts.length">
                       <tr v-for="item in carts" :key="item.id">
-                        <td class="text-start d-flex d-none">
+                        <!-- d-none d-lg-flex -->
+                        <td class="text-start d-none d-lg-flex">
                             <router-link :to="`/product/${item.product.id}`" class="img-router me-3">
                               <img :src="item.product.imageUrl" class="product_img" :alt="item.product.title">
                             </router-link>
@@ -71,10 +72,12 @@
                               </div>
                             </div>
                         </td>
-                        <td class="d-none">
+                        <!-- class="d-none d-lg-block" -->
+                        <td>
                             <del class="text-danger">NT${{ item.product.origin_price }}</del>
                         </td>
-                        <td class="d-none">
+                        <!-- class="d-none d-lg-block" -->
+                        <td>
                             <div class="input-group input-group-sm">
                                 <div class="input-group">
                                   <button class="px-2 input-group-text" :disabled="isLoading || item.qty === 1" @click="add_cart(item.product_id,item.qty-1,item.id)">
@@ -91,11 +94,13 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="text-end d-none">
+                        <!-- d-none d-lg-block -->
+                        <td class="text-end">
                             <small class="text-success" v-if="item.coupon">折扣價：</small>
                             NT${{ Math.round(item.final_total) }}
                         </td>
-                        <td class="d-none">
+                        <!-- class="d-none d-lg-block" -->
+                        <td>
                             <button type="button" class="btn btn-outline-danger btn-sm" @click="delete_cart(item.id)">
                                 <i class="fas fa-spinner fa-pulse" v-if="isLoading"></i>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -104,7 +109,7 @@
                                 </svg>
                             </button>
                         </td>
-                        <td colspan="5">
+                        <!-- <td colspan="5">
                           <div class="d-flex justify-content-between">
                             <router-link :to="`/product/${item.product.id}`" class="img-router me-3">
                               <img :src="item.product.imageUrl" class="product_img" :alt="item.product.title">
@@ -143,7 +148,10 @@
                                 </button>
                               </div>
                           </div>
-                        </td>
+                          <div class="d-flex">
+
+                          </div>
+                        </td> -->
                       </tr>
                     </template>
                     <template v-else>

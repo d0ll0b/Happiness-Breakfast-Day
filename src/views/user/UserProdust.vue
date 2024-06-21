@@ -59,15 +59,35 @@
               </div>
               <p>{{ product.description }}</p>
               <p class="mt-2">熱量： {{ product.content }}</p><br>
-              <del class="h6 text-danger">原價 NT${{ product.origin_price }} 元</del>
-              <div class="h5">現在只要 NT${{ product.price }} 元</div>
-                  <div>
-                      <div class="input-group mt-3">
-                      <input type="number" class="form-control"
-                              min="1" v-model.number="qty">
-                      <button type="button" class="btn btn-secondary text-light" @click="add_cart(product.id, qty, 'new')">加入購物車</button>
+              <div class="d-flex flex-column align-items-end">
+                  <div class="input-group input-group-sm mt-2">
+                      <div class="input-group">
+                        <button class="px-2 input-group-text" :disabled="isLoading || qty === 1" @click="qty-1">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+                            <path fill="$secondary" d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+                          </svg>
+                        </button>
+                        <input min="1" type="number" class="form-control text-center" v-model.number="qty" readonly>
+                        <button class="px-2 input-group-text" :disabled="isLoading" @click="qty+1">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                          </svg>
+                        </button>
                       </div>
                   </div>
+
+                  <!-- <div class="input-group mt-3">
+                  <input type="number" class="form-control"
+                          min="1" v-model.number="qty">
+                  </div> -->
+              </div>
+              <div class="d-flex justify-content-between">
+                <div class="d-flex align-items-center">
+                  <del class="h6 text-danger">NT${{ product.origin_price }}</del>
+                  <div class="h5 ms-2">NT${{ product.price }}</div>
+                </div>
+                <button type="button" class="btn btn-secondary text-light mt-2" @click="add_cart(product.id, qty, 'new')">加入購物車</button>
+              </div>
               </div>
           </div>
       </div>
