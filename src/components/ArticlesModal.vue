@@ -70,7 +70,7 @@
                   <!-- <textarea id="content" type="text" class="form-control"
                             placeholder="請輸入說明內容" v-model="tempProduct.content">
                   </textarea> -->
-                  <ckeditor :editor="editor" v-model="tempProduct.content"></ckeditor>
+                  <ckeditor :editor="editor" :config="editorConfig" v-model="tempProduct.content"></ckeditor>
                 </div>
                 <div class="mb-3">
                   <div class="form-check">
@@ -111,7 +111,10 @@ export default {
       title: '',
       ProductsModal: '',
       isLoading: false,
-      editor: ClassicEditor
+      editor: ClassicEditor,
+      editorConfig: {
+        toolbar: ['undo', 'redo', '|', 'heading', '|', 'bold', 'italic', '|', 'link']
+      }
     }
   },
   components: {
