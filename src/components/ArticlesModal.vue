@@ -1,5 +1,5 @@
 <template>
-  <div id="productModal" ref="productModal" class="modal fade text-start" tabindex="-1" aria-labelledby="productModalLabel"
+  <div id="ArticleModal" ref="ArticleModal" class="modal fade text-start" tabindex="-1" aria-labelledby="productModalLabel"
          aria-hidden="true">
       <div class="modal-dialog modal-xl">
         <div class="modal-content border-0">
@@ -19,22 +19,23 @@
                   <div class="mb-3">
                     <label for="imageUrl" class="form-label text-success h5 font-weight-bold ">標題</label>
                     <input type="text" class="form-control" id="imageUrl"
-                           placeholder="請輸入文章標題">
+                           placeholder="請輸入文章標題" v-model="tempArticles.title">
                   </div>
                   <div class="mb-3">
                     <label for="img" class="form-label">圖片網址</label>
                     <input type="text" class="form-control" id="img"
-                           placeholder="請輸入圖片網址">
+                           placeholder="請輸入圖片網址" v-model="tempArticles.imageUrl">
                   </div>
                   <!-- <img class="img-fluid" :src="tempProduct.imageUrl" alt=""> -->
                   <div class="mb-3">
                     <label for="author" class="form-label">作者</label>
                     <input type="text" class="form-control" id="author"
-                           placeholder="請輸入文章作者">
+                           placeholder="請輸入文章作者" v-model="tempArticles.author">
                   </div>
                   <div class="mb-3">
                     <label for="create_at" class="form-label">文章建立日期</label>
-                    <input id="create_at" type="date" class="form-control" placeholder="文章建立日期">
+                    <input id="create_at" type="date" class="form-control" placeholder="文章建立日期" v-model="tempArticles.create_at">
+                    <!-- 日期須轉換 -->
                   </div>
                 </div>
                 <!-- <div v-if="ShowImagebtn(tempProduct)">
@@ -56,13 +57,13 @@
               <div class="col-sm-8">
                 <div class="mb-3">
                   <label for="tags" class="form-label">標籤</label>
-                  <input id="tags" type="text" class="form-control" placeholder="請輸入標題" v-model="tempProduct.title">
+                  <input id="tags" type="text" class="form-control" placeholder="請輸入標題" v-model="tempArticles.tag">
                 </div>
 
                 <div class="mb-3">
                   <label for="description" class="form-label">文章描述</label>
                   <textarea id="description" type="text" class="form-control"
-                            placeholder="請輸入文章描述" v-model="tempProduct.description">
+                            placeholder="請輸入文章描述" v-model="tempArticles.description">
                   </textarea>
                 </div>
                 <div class="mb-3">
@@ -70,12 +71,12 @@
                   <!-- <textarea id="content" type="text" class="form-control"
                             placeholder="請輸入說明內容" v-model="tempProduct.content">
                   </textarea> -->
-                  <ckeditor :editor="editor" :config="editorConfig" v-model="tempProduct.content"></ckeditor>
+                  <ckeditor :editor="editor" :config="editorConfig" v-model="tempArticles.content"></ckeditor>
                 </div>
                 <div class="mb-3">
                   <div class="form-check">
                     <input id="is_enabled" class="form-check-input" type="checkbox"
-                           :true-value="1" :false-value="0" v-model="tempProduct.is_enabled">
+                           :true-value="1" :false-value="0" v-model="tempArticles.isPublic">
                     <label class="form-check-label" for="is_enabled">是否啟用</label>
                   </div>
                 </div>
@@ -105,11 +106,11 @@ export default {
   props: ['product'],
   data () {
     return {
-      products: [],
-      tempProduct: {},
+      Articles: [],
+      tempArticles: {},
       isNew: false,
       title: '',
-      ProductsModal: '',
+      ArticlesModal: '',
       isLoading: false,
       editor: ClassicEditor,
       editorConfig: {
@@ -121,7 +122,7 @@ export default {
     AlertMessages
   },
   mounted () {
-    this.ProductsModal = new Modal(this.$refs.productModal, {
+    this.ArticlesModal = new Modal(this.$refs.ArticleModal, {
       keyboard: false
     })
 
@@ -139,15 +140,15 @@ export default {
       switch (flg) {
         case 'new':
           this.isNew = true
-          this.tempProduct = {
+          this.tempArticles = {
             imagesUrl: []
           }
-          this.ProductsModal.show()
+          this.ArticlesModal.show()
           break
         case 'edit':
           this.isNew = false
-          this.tempProduct = { ...item }
-          this.ProductsModal.show()
+          this.tempArticles = { ...item }
+          this.ArticlesModal.show()
           break
       }
     },
