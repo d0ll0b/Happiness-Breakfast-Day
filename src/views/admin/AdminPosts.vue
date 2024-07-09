@@ -45,7 +45,7 @@
               <td>
                 <div class="btn-group btn-group-sm">
                     <!-- @click="this.$refs.CouponsModal.show_Modal('edit', item)" -->
-                    <button type="button" class="btn btn-outline-primary" @click="this.$refs.ArticlesModal.show_Modal('edit', item)">
+                    <button type="button" class="btn btn-outline-primary" @click="getArticle(item.id)">
                         <i class="fas fa-spinner fa-pulse" v-if="isLoading"></i>
                         修改
                     </button>
@@ -100,7 +100,21 @@ export default {
           const { articles, pagination } = res.data
           this.articles = articles
           this.pagination = pagination
-          console.log(articles)
+        })
+        .catch((err) => {
+          this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
+        })
+        .finally(() => {
+          this.isLoading = false
+        })
+    },
+    getArticle (id) {
+      this.isLoading = true
+      const api = `${apiUrl}/api/${apiPath}/admin/article/${id}`
+      this.axios.get(api)
+        .then((res) => {
+          const { article } = res.data
+          this.$refs.ArticlesModal.show_Modal('edit', article)
         })
         .catch((err) => {
           this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
