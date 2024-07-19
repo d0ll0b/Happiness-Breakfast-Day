@@ -14,10 +14,10 @@
           <button class="btn btn-secondary text-light" type="button" id="button-addon2" @click="select_order()">搜尋</button>
         </div>
       </div>
-    </div>
-    <div class="container-fuild">
-        <div class="d-flex row">
-            <!-- 訂單狀態 -->
+      <!-- description -->
+
+      <!-- 訂單狀態 -->
+      <div class="w-100 d-flex row">
             <ul class="d-flex justify-content-evenly bg-primary text-light mb-0 py-3">
               <li class="d-flex flex-column align-items-center">
                 <div class="cart-start">
@@ -65,6 +65,7 @@
               </li>
             </ul>
         </div>
+        <!-- 訂單狀態 -->
     </div>
 </template>
 

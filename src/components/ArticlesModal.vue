@@ -75,8 +75,7 @@
                 </div>
                 <div class="mb-3">
                   <div class="form-check">
-                    <input id="is_enabled" class="form-check-input" type="checkbox"
-                           :true-value="1" :false-value="0" v-model="tempArticles.isPublic">
+                    <input id="is_enabled" class="form-check-input" type="checkbox" v-model="tempArticles.isPublic">
                     <label class="form-check-label" for="is_enabled">是否啟用</label>
                   </div>
                 </div>
@@ -87,7 +86,7 @@
             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
               取消
             </button>
-            <button type="button" class="btn btn-primary" @click="Update_product(tempProduct.id)">
+            <button type="button" class="btn btn-primary" @click="Update_post(tempArticles.id)">
               確認
             </button>
           </div>
@@ -101,6 +100,7 @@ import AlertMessages from '@/components/AlertMessages.vue'
 import Modal from 'bootstrap/js/dist/modal'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 const { VITE_APP_API_URL: apiUrl, VITE_APP_API_NAME: apiPath } = import.meta.env
+let DateTime
 
 export default {
   props: ['product'],
@@ -143,32 +143,38 @@ export default {
           this.tempArticles = {
             imagesUrl: []
           }
+          DateTime = new Date().toISOString().split('T')
+          this.tempArticles.create_at = DateTime[0]
           this.ArticlesModal.show()
           break
         case 'edit':
           this.isNew = false
           this.tempArticles = { ...item }
+          DateTime = new Date(this.tempArticles.create_at * 1000).toISOString().split('T')
+          this.tempArticles.create_at = DateTime[0]
           this.ArticlesModal.show()
           break
       }
     },
-    Update_product (id) {
+    Update_post (id) {
       let api = ''
       if (this.isNew === true) {
-        api = `${apiUrl}/api/${apiPath}/admin/product`
-        this.axios.post(api, { data: this.tempProduct }).then((res) => {
-          this.$refs.AlertMessages.show_toast('新增產品成功!!!')
+        this.tempArticles.create_at = Math.floor(new Date(this.tempArticles.create_at) / 1000)
+        api = `${apiUrl}/api/${apiPath}/admin/articles`
+        this.axios.post(api, { data: this.tempArticles }).then((res) => {
+          this.$refs.AlertMessages.show_toast('新增貼文成功!!!')
           this.getData()
-          this.ProductsModal.hide()
+          this.ArticlesModal.hide()
         }).catch((err) => {
           this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
         })
       } else {
-        api = `${apiUrl}/api/${apiPath}/admin/product/${id}`
-        this.axios.put(api, { data: this.tempProduct }).then((res) => {
-          this.$refs.AlertMessages.show_toast('更新產品成功!!!')
+        this.tempArticles.create_at = Math.floor(new Date(this.tempArticles.create_at) / 1000)
+        api = `${apiUrl}/api/${apiPath}/admin/articles/${id}`
+        this.axios.put(api, { data: this.tempArticles }).then((res) => {
+          this.$refs.AlertMessages.show_toast('更新貼文成功!!!')
           this.getData()
-          this.ProductsModal.hide()
+          this.ArticlesModal.hide()
         }).catch((err) => {
           this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
         })

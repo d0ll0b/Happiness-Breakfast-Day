@@ -7,6 +7,11 @@
     <!-- 訊息 -->
     <div class="container">
         <div class="my-4">
+          <div class="bg-primary text-start text-white rounded-pill py-1 mb-1">
+              <div class="h5 mb-0">
+                  <span>首頁/美味餐點/全部</span>
+              </div>
+          </div>
           <h1 class="text-primary mb-2">全部商品</h1>
           <ul class="row row-cols-1 row-cols-md-3 g-4 ps-0">
             <li class="col" v-for="item in products" :key="item.id">
