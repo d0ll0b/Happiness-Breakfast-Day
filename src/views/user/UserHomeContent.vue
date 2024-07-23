@@ -125,6 +125,20 @@
     <!-- 訂餐步驟 -->
   </div>
 
+  <!-- 最新消息 -->
+  <div class="container-fuild bg-light">
+    <div class="d-flex row justify-content-center py-3">
+      <div class="col-8">
+        <h2 class="text-primary">最新消息</h2>
+        <ul v-for="item in articles" :key="item.id">
+          <li class="d-flex"><img :src="item.imageUrl" alt="image" class="w-25 h-25"><span>{{ item.description }}</span></li>
+        </ul>
+        <button class="btn btn-secondary mt-2 text-light" type="button"><a href="#">查看更多</a></button>
+      </div>
+    </div>
+  </div>
+  <!-- 最新消息 -->
+
   <div class="container-fuild">
     <!-- location -->
     <div class="d-flex bg-light flex-column flex-sm-row">
@@ -170,6 +184,7 @@ export default {
   data () {
     return {
       products: {},
+      articles: {},
       isLoading: false
     }
   },
@@ -230,10 +245,27 @@ export default {
         top: 0,
         behavior: 'smooth'
       })
+    },
+    // 取得最新消息
+    getArticles (page = 1) {
+      this.isLoading = true
+      const api = `${apiUrl}/api/${apiPath}/articles?page=${page}`
+      this.axios.get(api)
+        .then((res) => {
+          const { articles } = res.data
+          this.articles = articles
+        })
+        .catch((err) => {
+          this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
+        })
+        .finally(() => {
+          this.isLoading = false
+        })
     }
   },
   mounted () {
     this.get_product()
+    this.getArticles()
   },
   created () {
     AOS.init()

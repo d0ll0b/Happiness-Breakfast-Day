@@ -55,7 +55,7 @@
                 </div> -->
               </div>
               <div class="col-sm-8">
-                <div class="mb-3">
+                <div class="mb-3 d-none">
                   <label for="tags" class="form-label">標籤</label>
                   <input id="tags" type="text" class="form-control" placeholder="請輸入標題" v-model="tempArticles.tag">
                 </div>
