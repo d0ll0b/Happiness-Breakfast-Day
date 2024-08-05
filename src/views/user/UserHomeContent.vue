@@ -20,21 +20,6 @@
         </div>
       </div>
       <!-- description -->
-
-      <!-- 公告 swiper -->
-      <!-- <v-swiper
-          :pagination="{
-          dynamicBullets: true,
-          }"
-          :modules="modules"
-          :autoplay="{ delay: 500 }"
-          class="mySwiper d-none"
-      >
-          <v-swiper-slide v-for="item in products" :key="item.id">
-              <img class="img-fluid" :src="item.imageUrl" alt="">
-          </v-swiper-slide>
-      </v-swiper> -->
-      <!-- 公告 swiper -->
   </div>
 
   <div class="container-fuild bg-primary">
@@ -145,6 +130,35 @@
         </div>
     </div>
     <!-- location -->
+
+    <!-- 最新消息 -->
+    <!-- <v-swiper
+        :pagination="{
+        dynamicBullets: true,
+        }"
+        :modules="modules"
+        :autoplay="{ delay: 500 }"
+        class="mySwiper"
+    >
+        <v-swiper-slide v-for="item in articles" :key="item.id">
+            <img class="img-fluid" :src="item.imageUrl" alt="">
+        </v-swiper-slide>
+    </v-swiper> -->
+    <v-swiper
+      :slidesPerView="2"
+      :spaceBetween="0"
+      :freeMode="true"
+      :pagination="{
+        clickable: true,
+      }"
+      :modules="modules"
+      class="mySwiper"
+    >
+      <v-swiper-slide v-for="item in articles" :key="item.id">
+        <img class="img-fluid" :src="item.imageUrl" alt="">
+      </v-swiper-slide>
+    </v-swiper>
+    <!-- 最新消息 -->
   </div>
 
   <div>
@@ -170,6 +184,7 @@ export default {
   data () {
     return {
       products: {},
+      articles: {},
       isLoading: false
     }
   },
@@ -230,10 +245,24 @@ export default {
         top: 0,
         behavior: 'smooth'
       })
+    },
+    // 取得所有文章
+    get_articles () {
+      this.isLoading = true
+      const api = `${apiUrl}/api/${apiPath}/articles`
+      this.axios.get(api).then((res) => {
+        const { articles } = res.data
+        this.articles = articles
+      }).catch((err) => {
+        this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
+      }).finally(() => {
+        this.isLoading = false
+      })
     }
   },
   mounted () {
     this.get_product()
+    this.get_articles()
   },
   created () {
     AOS.init()
