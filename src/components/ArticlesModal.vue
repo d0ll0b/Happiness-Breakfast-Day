@@ -1,5 +1,5 @@
 <template>
-  <div id="productModal" ref="productModal" class="modal fade text-start" tabindex="-1" aria-labelledby="productModalLabel"
+  <div id="ArticleModal" ref="ArticleModal" class="modal fade text-start" tabindex="-1" aria-labelledby="productModalLabel"
          aria-hidden="true">
       <div class="modal-dialog modal-xl">
         <div class="modal-content border-0">
@@ -19,22 +19,23 @@
                   <div class="mb-3">
                     <label for="imageUrl" class="form-label text-success h5 font-weight-bold ">標題</label>
                     <input type="text" class="form-control" id="imageUrl"
-                           placeholder="請輸入文章標題">
+                           placeholder="請輸入文章標題" v-model="tempArticles.title">
                   </div>
                   <div class="mb-3">
                     <label for="img" class="form-label">圖片網址</label>
                     <input type="text" class="form-control" id="img"
-                           placeholder="請輸入圖片網址">
+                           placeholder="請輸入圖片網址" v-model="tempArticles.imageUrl">
                   </div>
                   <!-- <img class="img-fluid" :src="tempProduct.imageUrl" alt=""> -->
                   <div class="mb-3">
                     <label for="author" class="form-label">作者</label>
                     <input type="text" class="form-control" id="author"
-                           placeholder="請輸入文章作者">
+                           placeholder="請輸入文章作者" v-model="tempArticles.author">
                   </div>
                   <div class="mb-3">
                     <label for="create_at" class="form-label">文章建立日期</label>
-                    <input id="create_at" type="date" class="form-control" placeholder="文章建立日期">
+                    <input id="create_at" type="date" class="form-control" placeholder="文章建立日期" v-model="tempArticles.create_at">
+                    <!-- 日期須轉換 -->
                   </div>
                 </div>
                 <!-- <div v-if="ShowImagebtn(tempProduct)">
@@ -54,15 +55,15 @@
                 </div> -->
               </div>
               <div class="col-sm-8">
-                <div class="mb-3">
+                <div class="mb-3 d-none">
                   <label for="tags" class="form-label">標籤</label>
-                  <input id="tags" type="text" class="form-control" placeholder="請輸入標題" v-model="tempProduct.title">
+                  <input id="tags" type="text" class="form-control" placeholder="請輸入標題" v-model="tempArticles.tag">
                 </div>
 
                 <div class="mb-3">
                   <label for="description" class="form-label">文章描述</label>
                   <textarea id="description" type="text" class="form-control"
-                            placeholder="請輸入文章描述" v-model="tempProduct.description">
+                            placeholder="請輸入文章描述" v-model="tempArticles.description">
                   </textarea>
                 </div>
                 <div class="mb-3">
@@ -70,12 +71,11 @@
                   <!-- <textarea id="content" type="text" class="form-control"
                             placeholder="請輸入說明內容" v-model="tempProduct.content">
                   </textarea> -->
-                  <ckeditor :editor="editor" v-model="tempProduct.content"></ckeditor>
+                  <ckeditor :editor="editor" :config="editorConfig" v-model="tempArticles.content"></ckeditor>
                 </div>
                 <div class="mb-3">
                   <div class="form-check">
-                    <input id="is_enabled" class="form-check-input" type="checkbox"
-                           :true-value="1" :false-value="0" v-model="tempProduct.is_enabled">
+                    <input id="is_enabled" class="form-check-input" type="checkbox" v-model="tempArticles.isPublic">
                     <label class="form-check-label" for="is_enabled">是否啟用</label>
                   </div>
                 </div>
@@ -86,7 +86,7 @@
             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
               取消
             </button>
-            <button type="button" class="btn btn-primary" @click="Update_product(tempProduct.id)">
+            <button type="button" class="btn btn-primary" @click="Update_post(tempArticles.id)">
               確認
             </button>
           </div>
@@ -100,25 +100,29 @@ import AlertMessages from '@/components/AlertMessages.vue'
 import Modal from 'bootstrap/js/dist/modal'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 const { VITE_APP_API_URL: apiUrl, VITE_APP_API_NAME: apiPath } = import.meta.env
+let DateTime
 
 export default {
   props: ['product'],
   data () {
     return {
-      products: [],
-      tempProduct: {},
+      Articles: [],
+      tempArticles: {},
       isNew: false,
       title: '',
-      ProductsModal: '',
+      ArticlesModal: '',
       isLoading: false,
-      editor: ClassicEditor
+      editor: ClassicEditor,
+      editorConfig: {
+        toolbar: ['undo', 'redo', '|', 'heading', '|', 'bold', 'italic', '|', 'link']
+      }
     }
   },
   components: {
     AlertMessages
   },
   mounted () {
-    this.ProductsModal = new Modal(this.$refs.productModal, {
+    this.ArticlesModal = new Modal(this.$refs.ArticleModal, {
       keyboard: false
     })
 
@@ -136,35 +140,41 @@ export default {
       switch (flg) {
         case 'new':
           this.isNew = true
-          this.tempProduct = {
+          this.tempArticles = {
             imagesUrl: []
           }
-          this.ProductsModal.show()
+          DateTime = new Date().toISOString().split('T')
+          this.tempArticles.create_at = DateTime[0]
+          this.ArticlesModal.show()
           break
         case 'edit':
           this.isNew = false
-          this.tempProduct = { ...item }
-          this.ProductsModal.show()
+          this.tempArticles = { ...item }
+          DateTime = new Date(this.tempArticles.create_at * 1000).toISOString().split('T')
+          this.tempArticles.create_at = DateTime[0]
+          this.ArticlesModal.show()
           break
       }
     },
-    Update_product (id) {
+    Update_post (id) {
       let api = ''
       if (this.isNew === true) {
-        api = `${apiUrl}/api/${apiPath}/admin/product`
-        this.axios.post(api, { data: this.tempProduct }).then((res) => {
-          this.$refs.AlertMessages.show_toast('新增產品成功!!!')
+        this.tempArticles.create_at = Math.floor(new Date(this.tempArticles.create_at) / 1000)
+        api = `${apiUrl}/api/${apiPath}/admin/articles`
+        this.axios.post(api, { data: this.tempArticles }).then((res) => {
+          this.$refs.AlertMessages.show_toast('新增貼文成功!!!')
           this.getData()
-          this.ProductsModal.hide()
+          this.ArticlesModal.hide()
         }).catch((err) => {
           this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
         })
       } else {
-        api = `${apiUrl}/api/${apiPath}/admin/product/${id}`
-        this.axios.put(api, { data: this.tempProduct }).then((res) => {
-          this.$refs.AlertMessages.show_toast('更新產品成功!!!')
+        this.tempArticles.create_at = Math.floor(new Date(this.tempArticles.create_at) / 1000)
+        api = `${apiUrl}/api/${apiPath}/admin/articles/${id}`
+        this.axios.put(api, { data: this.tempArticles }).then((res) => {
+          this.$refs.AlertMessages.show_toast('更新貼文成功!!!')
           this.getData()
-          this.ProductsModal.hide()
+          this.ArticlesModal.hide()
         }).catch((err) => {
           this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
         })

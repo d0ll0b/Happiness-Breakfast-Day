@@ -20,6 +20,21 @@
         </div>
       </div>
       <!-- description -->
+
+      <!-- 公告 swiper -->
+      <!-- <v-swiper
+          :pagination="{
+          dynamicBullets: true,
+          }"
+          :modules="modules"
+          :autoplay="{ delay: 500 }"
+          class="mySwiper d-none"
+      >
+          <v-swiper-slide v-for="item in products" :key="item.id">
+              <img class="img-fluid" :src="item.imageUrl" alt="">
+          </v-swiper-slide>
+      </v-swiper> -->
+      <!-- 公告 swiper -->
   </div>
 
   <div class="container-fuild bg-primary">
@@ -110,6 +125,20 @@
     <!-- 訂餐步驟 -->
   </div>
 
+  <!-- 最新消息 -->
+  <div class="container-fuild bg-light">
+    <div class="d-flex row justify-content-center py-3">
+      <div class="col-8">
+        <h2 class="text-primary">最新消息</h2>
+        <ul v-for="item in articles" :key="item.id">
+          <li class="d-flex"><img :src="item.imageUrl" alt="image" class="w-25 h-25"><span>{{ item.description }}</span></li>
+        </ul>
+        <button class="btn btn-secondary mt-2 text-light" type="button"><a href="#">查看更多</a></button>
+      </div>
+    </div>
+  </div>
+  <!-- 最新消息 -->
+
   <div class="container-fuild">
     <!-- location -->
     <div class="d-flex bg-light flex-column flex-sm-row">
@@ -130,35 +159,6 @@
         </div>
     </div>
     <!-- location -->
-
-    <!-- 最新消息 -->
-    <!-- <v-swiper
-        :pagination="{
-        dynamicBullets: true,
-        }"
-        :modules="modules"
-        :autoplay="{ delay: 500 }"
-        class="mySwiper"
-    >
-        <v-swiper-slide v-for="item in articles" :key="item.id">
-            <img class="img-fluid" :src="item.imageUrl" alt="">
-        </v-swiper-slide>
-    </v-swiper> -->
-    <v-swiper
-      :slidesPerView="2"
-      :spaceBetween="0"
-      :freeMode="true"
-      :pagination="{
-        clickable: true,
-      }"
-      :modules="modules"
-      class="mySwiper"
-    >
-      <v-swiper-slide v-for="item in articles" :key="item.id">
-        <img class="img-fluid" :src="item.imageUrl" alt="">
-      </v-swiper-slide>
-    </v-swiper>
-    <!-- 最新消息 -->
   </div>
 
   <div>
@@ -246,23 +246,26 @@ export default {
         behavior: 'smooth'
       })
     },
-    // 取得所有文章
-    get_articles () {
+    // 取得最新消息
+    getArticles (page = 1) {
       this.isLoading = true
-      const api = `${apiUrl}/api/${apiPath}/articles`
-      this.axios.get(api).then((res) => {
-        const { articles } = res.data
-        this.articles = articles
-      }).catch((err) => {
-        this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
-      }).finally(() => {
-        this.isLoading = false
-      })
+      const api = `${apiUrl}/api/${apiPath}/articles?page=${page}`
+      this.axios.get(api)
+        .then((res) => {
+          const { articles } = res.data
+          this.articles = articles
+        })
+        .catch((err) => {
+          this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
+        })
+        .finally(() => {
+          this.isLoading = false
+        })
     }
   },
   mounted () {
     this.get_product()
-    this.get_articles()
+    this.getArticles()
   },
   created () {
     AOS.init()
