@@ -2,17 +2,17 @@
   <div id="MobileNarbarModal" ref="MobileNarbarModal" class="modal fade text-center animate__animated animate__bounceIn" tabindex="-1" aria-labelledby="MobileNarbarModalLabel"
          aria-hidden="true">
          <!-- data-backdrop="true" data-bs-dismiss="modal" -->
-      <div class=" modal-dialog modal-fullscreen bg-primary">
-        <div class="container">
-          <ul class="w-100 h-100 list-unstyled d-flex flex-column justify-content-center align-items-center text-light">
+      <div class="modal-dialog modal-fullscreen bg-primary">
+        <div class="container modal-content bg-primary">
+          <ul class="w-100 h-100 list-unstyled d-flex flex-column justify-content-center align-items-center text-light modal-body">
             <li class="nav-item mt-3">
-              <RouterLink to="/home" class="Logo navbar-brand w-100" @click.prevent="this.hide_Modal()">
+              <RouterLink to="/home" class="Logo navbar-brand w-100" @click="this.hide_Modal()">
                       <img src="https://storage.googleapis.com/vue-course-api.appspot.com/dollob_api/1711250508957.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=L5bMIXsNqXrbJsZdRc1c2XRmdQSrn%2Brq%2FltzYJQjxjZ7%2FGqiMPl%2BK4LibQRXBKY67MVbx%2BBTlHKvR7p1LyqjwoDTC3kd4Y1fFh8IbKAvb3wn9SU6yNh4R%2FonSZ%2BailLNZqWm2yCB%2BxF50S65JJeMzpw0MNXIn%2FwX7y1vkTYaIZCEFQrzXl3n0ISS5ya5N6Qr7RLBj2S7kpdlDgUdvgjPf6B0O0QLA6YBrislOPO%2BYp8I%2FfdkM86jH2FA2EwImbNREVWKnW1OQfecyxSvvi1o3FusmZzypDanuYjh1IBzkbknqesqpRc42v2UnYUz5gO%2FAFvnNfZJPGgvMYyF7GOArw%3D%3D"
                           alt="好不幸福早餐店" width="300" height="100" class="Logo">
               </RouterLink>
             </li>
             <li class="nav-item py-3 w-100 border-2 border-bottom border-light">
-              <RouterLink to="/home" class="nav-link fs-4" @click.prevent="this.hide_Modal()">首頁
+              <RouterLink to="/home" class="nav-link fs-4" @click="this.hide_Modal()">首頁
                   <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
                       <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
                   </svg>

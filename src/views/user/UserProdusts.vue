@@ -7,7 +7,7 @@
     <!-- 訊息 -->
     <div class="container">
         <div class="my-4">
-          <div class="bg-primary text-start text-white rounded-pill py-1 mb-1">
+          <div class="bg-primary text-start text-white rounded-pill py-1 mb-1 d-none">
               <div class="h5 mb-0">
                   <span>首頁/美味餐點/全部</span>
               </div>
@@ -97,6 +97,7 @@ export default {
       products: [],
       product: {},
       pagination: {},
+      category: {},
       isLoading: false
     }
   },
@@ -114,6 +115,7 @@ export default {
         const { products, pagination } = res.data
         this.products = products
         this.pagination = pagination
+        console.dir(this.products)
       }).catch((err) => {
         this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
       }).finally(() => {

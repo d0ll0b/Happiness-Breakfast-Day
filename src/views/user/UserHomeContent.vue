@@ -126,7 +126,7 @@
   </div>
 
   <!-- 最新消息 -->
-  <div class="container-fuild bg-light">
+  <div class="container-fuild bg-light d-none">
     <div class="d-flex row justify-content-center py-3">
       <div class="col-8">
         <h2 class="text-primary">最新消息</h2>
