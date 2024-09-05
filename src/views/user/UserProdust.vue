@@ -56,9 +56,10 @@
               <div class="d-flex">
                 <p class="badge bg-secondary rounded-pill h-50 me-2 my-auto">{{ product.category }}</p>
                 <h2 class="text-primary">{{ product.title }}</h2>
+                <p class="mt-2">熱量： {{ product.content }}</p>
               </div>
               <p>{{ product.description }}</p>
-              <p class="mt-2">熱量： {{ product.content }}</p><br>
+              <br>
               <div class="d-flex flex-column align-items-end">
                   <div class="input-group input-group-sm mt-2">
                       <div class="input-group">

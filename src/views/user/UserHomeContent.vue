@@ -102,7 +102,14 @@
         </div>
         <span class="fw-bold fs-3 mt-4 mb-4">1.挑選品項</span>
       </li>
-      <hr>
+      <li class="d-md-flex d-none flex-column justify-content-center animate__animated animate__fadeInLeft animate__infinite">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
+            <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
+          </svg>
+        </div>
+      </li>
       <li class="d-flex flex-column align-items-center shake-slow" data-aos="fade-up" data-aos-duration="900">
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-alarm order-process-svg" viewBox="0 0 16 16">
@@ -112,7 +119,14 @@
         </div>
         <span class="fw-bold fs-3 mt-4 mb-4">2.餐點製作</span>
       </li>
-      <hr>
+      <li class="d-md-flex d-none flex-column justify-content-center animate__animated animate__fadeInLeft animate__infinite">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
+            <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
+          </svg>
+        </div>
+      </li>
       <li class="d-flex flex-column align-items-center shake-slow" data-aos="fade-up" data-aos-duration="1800">
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-box-seam order-process-svg" viewBox="0 0 16 16">
@@ -126,14 +140,17 @@
   </div>
 
   <!-- 最新消息 -->
-  <div class="container-fuild bg-light d-none">
+  <div class="container-fuild bg-light description">
+    <div class="description-blur"></div>
     <div class="d-flex row justify-content-center py-3">
       <div class="col-8">
-        <h2 class="text-primary">最新消息</h2>
-        <ul v-for="item in articles" :key="item.id">
-          <li class="d-flex"><img :src="item.imageUrl" alt="image" class="w-25 h-25"><span>{{ item.description }}</span></li>
+        <h2 class="text-light mb-3">最新消息</h2>
+        <ul v-for="item in articles" :key="item.id" class="w-100">
+          <li class="d-flex h-25">
+            <img :src="item.imageUrl" alt="image" class="col-4">
+            <span class="col-8 border border-4 border-primary bg-light py-1">{{ item.description }}</span>
+          </li>
         </ul>
-        <button class="btn btn-secondary mt-2 text-light" type="button"><a href="#">查看更多</a></button>
       </div>
     </div>
   </div>
@@ -155,7 +172,7 @@
             <p></p>
         </div>
         <div class="col-12 col-sm-8">
-            <iframe  data-aos="fade-up" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3702.747379850056!2d-133.4193056!3d-21.8672778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDUyJzAyLjIiUyAxMzPCsDI1JzA5LjUiVw!5e0!3m2!1szh-TW!2stw!4v1711270962625!5m2!1szh-TW!2stw"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-100 h-100"></iframe>
+          <iframe data-aos="fade-up" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3702.747379850056!2d-133.4193056!3d-21.8672778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDUyJzAyLjIiUyAxMzPCsDI1JzA5LjUiVw!5e0!3m2!1szh-TW!2stw!4v1711270962625!5m2!1szh-TW!2stw"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-100 h-100"></iframe>
         </div>
     </div>
     <!-- location -->

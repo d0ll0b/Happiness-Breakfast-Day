@@ -51,6 +51,7 @@ export default {
 
       this.axios.post(api, this.user).then((res) => {
         const { token, expired } = res.data
+        document.cookie = 'hexToken=;expires=;path=/'
         document.cookie = `hexToken=${token};expires=${new Date(expired)}; path=/`
         this.$refs.AlertMessages.show_toast('登入成功~~')
         this.$router.push('/admin/products')
