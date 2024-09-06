@@ -4,8 +4,10 @@
     </VueLoading>
     <!-- 訊息 -->
     <alert-messages ref="AlertMessages"></alert-messages>
-    <!-- 訊息 -->
-    <div class="container">
+    <!-- 訊息  description-->
+    <div class="container-fuild">
+      <div class="description-blur"></div>
+      <div class="container">
         <div class="d-flex row">
             <!-- 購物車列表 -->
             <ul class="d-flex justify-content-evenly bg-primary text-light mb-0 py-2">
@@ -176,20 +178,21 @@
             </table>
             <div class="text-end mb-3 d-flex justify-content-between">
                 <div>
-                    <button class="btn btn-outline-danger" type="button" v-if="carts.length" @click="delete_cart()">清空<br>購物車</button>
+                  <!-- border border-1 border-black -->
+                    <button class="btn btn-danger" type="button" v-if="carts.length" @click="delete_cart()">清空<br>購物車</button>
                 </div>
                 <div class="d-flex">
                     <div class="input-group me-5">
                       <input type="text" class="form-control form-control" placeholder="請輸入優惠卷代碼" aria-label="coupons" aria-describedby="button-addon2" v-model="code">
-                      <button class="btn btn-outline-primary" type="button" id="button-addon2" @click="use_coupon()">輸入</button>
+                      <button class="btn btn-primary text-light border border-2 border-white" type="button" id="button-addon2" @click="use_coupon()">輸入</button>
                     </div>
-                    <button class="btn btn-primary text-white" type="button" :class="{ 'disabled': !carts.length }" v-if="carts.length" @click="this.$router.push('/checkout')">前往結帳</button>
+                    <button class="btn btn-primary text-light border border-2 border-white" type="button" :class="{ 'disabled': !carts.length }" v-if="carts.length" @click="this.$router.push('/checkout')">前往結帳</button>
                 </div>
             </div>
         </div>
         <!-- 更多推薦 -->
         <div class="bg-primary pb-4">
-          <h2 class="text-center text-light mb-0">更多推薦</h2>
+          <h2 class="text-center text-light pt-2 mb-0">更多推薦</h2>
           <v-swiper
               :breakpoints="{
                 1: {
@@ -240,6 +243,7 @@
         </div>
         <!-- 更多推薦 -->
     </div>
+  </div>
 </template>
 
 <script>

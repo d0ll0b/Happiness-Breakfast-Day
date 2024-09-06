@@ -170,7 +170,7 @@ export default {
         })
       } else {
         this.tempArticles.create_at = Math.floor(new Date(this.tempArticles.create_at) / 1000)
-        api = `${apiUrl}/api/${apiPath}/admin/articles/${id}`
+        api = `${apiUrl}/api/${apiPath}/admin/article/${id}`
         this.axios.put(api, { data: this.tempArticles }).then((res) => {
           this.$refs.AlertMessages.show_toast('更新貼文成功!!!')
           this.getData()

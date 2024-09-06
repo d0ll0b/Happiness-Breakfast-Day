@@ -56,9 +56,9 @@
               <div class="d-flex">
                 <p class="badge bg-secondary rounded-pill h-50 me-2 my-auto">{{ product.category }}</p>
                 <h2 class="text-primary">{{ product.title }}</h2>
-                <p class="mt-2">熱量： {{ product.content }}</p>
               </div>
-              <p>{{ product.description }}</p>
+              <p class="mt-2">{{ product.content }}</p>
+              <p class="mt-2">熱量： {{ product.description }}</p>
               <br>
               <div class="d-flex flex-column align-items-end">
                   <div class="input-group input-group-sm mt-2">
@@ -196,6 +196,7 @@ export default {
       this.axios.get(api).then((res) => {
         const { product } = res.data
         this.product = product
+        console.dir(this.product)
         this.get_products(this.product.category, this.product.id)
       }).catch((err) => {
         this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
@@ -203,7 +204,7 @@ export default {
         this.isLoading = false
       })
     },
-    // 取得所有商品
+    // 取得類似品項
     get_products (category, id) {
       this.isLoading = true
       const api = `${apiUrl}/api/${apiPath}/products?category=${category}`

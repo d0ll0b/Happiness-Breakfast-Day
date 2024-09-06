@@ -18,7 +18,7 @@
       <!-- 訊息 -->
 
       <div class="text-end">
-        <button class="btn btn-primary" type="button" @click="getArticles()">新增貼文</button>
+        <button class="btn btn-primary" type="button" @click="this.$refs.ArticlesModal.show_Modal('new')">新增貼文</button>
       </div>
       <table class="table align-middle">
         <thead>
