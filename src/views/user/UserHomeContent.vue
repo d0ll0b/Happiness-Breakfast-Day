@@ -146,8 +146,8 @@
       <div class="col-8">
         <h2 class="text-light mb-3">最新消息</h2>
         <ul v-for="item in articles" :key="item.id" class="w-100">
-          <li class="d-flex h-25">
-            <img :src="item.imageUrl" alt="image" class="col-4">
+          <li class="d-flex">
+            <img :src="item.imageUrl" alt="image" class="col-4 border border-2 border-light">
             <span class="col-8 border border-4 border-primary bg-light py-1">{{ item.description }}</span>
           </li>
         </ul>

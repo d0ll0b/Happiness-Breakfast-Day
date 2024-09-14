@@ -152,6 +152,7 @@ export default {
           this.tempArticles = { ...item }
           DateTime = new Date(this.tempArticles.create_at * 1000).toISOString().split('T')
           this.tempArticles.create_at = DateTime[0]
+          console.dir(this.tempArticles)
           this.ArticlesModal.show()
           break
       }
@@ -160,7 +161,7 @@ export default {
       let api = ''
       if (this.isNew === true) {
         this.tempArticles.create_at = Math.floor(new Date(this.tempArticles.create_at) / 1000)
-        api = `${apiUrl}/api/${apiPath}/admin/articles`
+        api = `${apiUrl}/api/${apiPath}/admin/article`
         this.axios.post(api, { data: this.tempArticles }).then((res) => {
           this.$refs.AlertMessages.show_toast('新增貼文成功!!!')
           this.getData()
