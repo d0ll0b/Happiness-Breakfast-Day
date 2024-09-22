@@ -24,6 +24,10 @@ export default {
   methods: {
     changePage (page) {
       this.$emit('changePage', page)
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
     }
   }
 }

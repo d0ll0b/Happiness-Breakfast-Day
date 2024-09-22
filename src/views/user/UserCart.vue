@@ -177,12 +177,11 @@
                       </tr>
                   </tfoot>
               </table>
-              <div class="text-end mb-3 d-flex justify-content-between">
-                  <div>
-                    <!-- border border-1 border-black -->
+              <div class="text-end mb-3 d-flex justify-content-between row">
+                  <div class="col-12 col-lg-8 text-end text-lg-start mb-3 mb-lg-0">
                       <button class="btn btn-danger" type="button" v-if="carts.length" @click="delete_cart()">清空<br>購物車</button>
                   </div>
-                  <div class="d-flex">
+                  <div class="d-flex col-12 col-lg-4">
                       <div class="input-group me-5">
                         <input type="text" class="form-control form-control" placeholder="請輸入優惠卷代碼" aria-label="coupons" aria-describedby="button-addon2" v-model="code">
                         <button class="btn btn-primary text-light border border-2 border-white" type="button" id="button-addon2" :class="{ 'disabled': !code.length }" @click="use_coupon()">輸入</button>
