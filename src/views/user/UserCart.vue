@@ -6,7 +6,7 @@
     <alert-messages ref="AlertMessages"></alert-messages>
     <!-- 訊息 -->
     <div class="container-fuild">
-      <!-- <div class="w-100 description d-flex flex-column"> -->
+      <div class="w-100 cart-bg">
         <div class="description-blur"></div>
         <div class="container">
           <div class="d-flex row">
@@ -243,7 +243,7 @@
           </div>
           <!-- 更多推薦 -->
         </div>
-      <!-- </div> -->
+      </div>
     </div>
 </template>
 

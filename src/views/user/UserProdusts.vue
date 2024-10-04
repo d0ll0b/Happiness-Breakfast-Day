@@ -12,9 +12,10 @@
                   <span>首頁/美味餐點/全部</span>
               </div>
           </div>
-          <ul v-for="item in products" :key="item.category" class="d-none">
-            <li>{{ item.category }}</li> /
-          </ul>
+          <!-- <ul v-for="item in uniqueCategorys" :key="item.id">
+            <li>{{ item }}</li> /
+          </ul> -->
+          <!-- <button class="btn btn-primary text-light border border-2 border-white" type="button" @click="filter_item()">篩選</button> -->
           <h1 class="text-primary mb-2">全部商品</h1>
           <ul class="row row-cols-1 row-cols-md-3 g-4 ps-0">
             <li class="col" v-for="item in products" :key="item.id">
@@ -101,6 +102,7 @@ export default {
       product: {},
       pagination: {},
       category: {},
+      filter: '',
       isLoading: false
     }
   },
@@ -118,7 +120,7 @@ export default {
         const { products, pagination } = res.data
         this.products = products
         this.pagination = pagination
-        console.dir(this.products)
+        this.uniqueCategorys()
       }).catch((err) => {
         this.$refs.AlertMessages.show_alert(err?.response.data.message, 1300, 'error')
       }).finally(() => {
@@ -167,8 +169,29 @@ export default {
         this.isLoading = false
       })
     },
+    uniqueCategorys () {
+      const seen = new Set()
+      const uniqueCategory = []
+      this.category = this.products.filter(product => {
+        if (!seen.has(product.category)) {
+          seen.add(product.category)
+          uniqueCategory.push(product.category)
+        }
+
+        return uniqueCategory
+      })
+    },
     ...mapActions(cartStore, ['get_cart'])
   },
+  // computed: {
+  //   uniqueCategorys () {
+  //     const seen = new Set()
+  //     return this.products.category.filters(item => {
+  //       const k = item.id
+  //       return seen.has(k) ? false : seen.add(k)
+  //     })
+  //   }
+  // },
   mounted () {
     this.get_products()
   }
