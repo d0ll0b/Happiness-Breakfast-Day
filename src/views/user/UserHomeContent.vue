@@ -148,7 +148,8 @@
         <ul v-for="item in articles" :key="item.id" class="w-100">
           <li class="d-flex">
             <img :src="item.imageUrl" alt="image" class="col-4 border border-2 border-light">
-            <span class="col-8 border border-4 border-primary bg-light py-1">{{ item.description }}</span>
+            <span class="col-7 border border-4 border-primary bg-light px-2 d-flex h5 text-start align-items-center">&emsp;&emsp;{{ item.description }}</span>
+            <RouterLink to="/products" class="col-1 text-end header-item py-1 bg-primary text-light fs-5">more</RouterLink>
           </li>
         </ul>
       </div>
