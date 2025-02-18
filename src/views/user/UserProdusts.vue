@@ -101,7 +101,7 @@ export default {
       products: [],
       product: {},
       pagination: {},
-      category: {},
+      Categorys: [],
       filter: '',
       isLoading: false
     }
@@ -172,14 +172,14 @@ export default {
     uniqueCategorys () {
       const seen = new Set()
       const uniqueCategory = []
-      this.category = this.products.filter(product => {
+      this.Categorys = this.products.filter(product => {
         if (!seen.has(product.category)) {
           seen.add(product.category)
           uniqueCategory.push(product.category)
         }
-
         return uniqueCategory
       })
+      this.Categorys = uniqueCategory
     },
     ...mapActions(cartStore, ['get_cart'])
   },
